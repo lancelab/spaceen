@@ -1,0 +1,24 @@
+
+
+FF offset bug? 
+http://stackoverflow.com/questions/6600770/jquery-position-and-offset-error-on-firefox
+
+
+run_graph.js
+
+		/// Handles destructive events like "window.onresize"
+		var resizeHandler = function ()
+		{
+				if( reset_delay_flag !== null )
+				{
+					//	solution used credit: http://mbccs.blogspot.com/2007/11/fixing-window-resize-event-in-ie.html
+					//	which is found here: http://stackoverflow.com/questions/641857/javascript-window-resize-event
+					//	another help: http://stackoverflow.com/questions/5489946/jquery-how-to-wait-for-the-end-or-resize-event-and-only-then-perform-an-ac
+					//.	Good timing debug which prooves that "reset_delay_flag method" works well:	
+					//  btb.d eb( "Discarding ''reset_animation number " + reset_counter + "'' because of continue resetting. " );
+					window.clearTimeout( reset_delay_flag );
+				}
+				reset_delay_flag = setTimeout( self.reset_animation, 10 );
+		};
+
+

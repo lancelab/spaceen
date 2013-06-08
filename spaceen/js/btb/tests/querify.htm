@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><title>Tests</title>
+
+	<meta http-equiv="Content-Type"	content="text/html; charset=UTF-8">
+    <script src="../debug.js"></script>
+    <script src="../main.js"></script>
+
+<body><pre>
+
+
+	<script>
+
+		btb$.deb( btb$.getQueryKeyPairs( 'integerify' ) );
+
+	</script>
+	
+	<a href="querify.htm">null returned</a>
+	<a href="querify.htm?aa=1">aa=1</a>
+	<a href="querify.htm?aa.bb=1">aa : bb : 1</a>
+	<a href="querify.htm?aa.bb=1&xx.yy.zz=2&xx.yy=3">aa.bb=1, xx.yy.zz=2, xx.yy=3</a>
+	<a href="querify.htm?aa.bb=1&xx.yy.zz=2&xx.aa=3">aa.bb=1, xx.yy.zz=2, xx.aa=3</a>
+
+
+	<a href="querify.htm?aa.bb=1&xx.yy.zz~2.34&xx.aa=2.34">aa.bb=1&xx.yy.zz~2.34&xx.aa=2.34</a>
+
+
+</pre></body></html>
+

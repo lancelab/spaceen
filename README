@@ -1,0 +1,33 @@
+
+SPACEseeEN is a small JavaScript library aimed to
+
+  visualize 3D scene displayed on flat screen or
+  display visual art.
+
+spaceen/js/graph        is a core library
+spaceen/js/f i l e s    run-time managers and utitilites
+spaceen/js/btb          general purpose JS utilities
+spaceen/deployer        minifier and deployer
+spaceen/php_templater   helsp to assembly html and js files into response-page
+spaceen/scenarios       data and data generating files. actual art.
+
+All parts except scenarios have MIT-license: Copyright (c) 2013 Konstantin Kirillov. Landkey.net
+Files in "spaceen/scenarios" folder licensed under their own licenses and bundled with github package for demo purposes.
+
+There is no database end on server side, php-files are just a convenient tool to retemplate pages.
+Land browser on .../index.htm, .../index.prod.htm, or ...index.dev.htm
+Yes, running examples requires server like Apache: localhost/.../index.prod.htm, but
+only to produce simple combination of html-js files.
+The project is essentially pure JavaScript.
+
+Download: git clone git@github.com:lancelab/spaceen.git
+or download as zip file.
+
+It is intended to add new applications to spaceen in a simple way:
+copy-paste your own folders in "scenarios" folder. Use analogy.
+
+
+Welcome to sn.
+
+
+

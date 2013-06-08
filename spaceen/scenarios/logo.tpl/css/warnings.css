@@ -1,0 +1,68 @@
+
+	/*********************************************************************/
+	/* Landing messages                                                  */
+	/*********************************************************************/
+
+	#loading_wrapper
+	{
+		position	: fixed;
+		width		: 100%;
+		height		: 100%;
+		top			: 0px;
+		left		: 0px;
+		z-index		: -3;
+	}
+
+	#loading
+	{
+		margin				: auto;
+		top					: 0px;
+		background-color	: #000000;
+		color				: #AAAAAA;
+		text-align			: center;
+		font-size			: 18px;
+		z-index				: -3;
+	}
+
+	#canvas_warning
+	{
+		position			: fixed;
+		top					: 0px;
+		width				: 100%;
+		height				: 600px;
+
+		text-align			: center;
+		font-size			: 18px;
+
+		background-color	: #000000;
+		color				: #AAAAAA;
+
+		display				: none;
+		z-index				: -2;
+	}
+
+	#canvas_warning_subdiv
+	{
+		margin				: auto;
+		width				: 400px;
+	}
+
+	#java-script-disabled
+	{
+		position			: fixed;
+		top					: 200px;
+		width				: 100%;
+		height				: 600px;
+		background-color	: #000000;
+		color				: #AAAAAA;
+		text-align			: center;
+		font-size			: 18px;
+		z-index				: -1;
+	}
+
+	#js-disabled-subdiv
+	{
+		margin				: auto;
+		width				: 400px;
+	}
+

@@ -1,0 +1,170 @@
+
+
+	/* ************************************************************** */
+	/*    Apparently some "single page-hosting" environments do break */
+	/*    <hN> tag. Like cloudpage.co. Here is a fix:                 */
+	/* ************************************************************** */
+	h1,h2,h3,h4,h5,h6
+	{
+		font-family : arial, helvetica;
+		font-weight : bold;
+	}
+
+
+	/* ************************************************************** */
+	/*    generic                                                     */     
+	/* ************************************************************** */
+	body
+	{
+		padding : 0px;
+		margin : 0px;
+		overflow-x : hidden;
+
+		background-color : #0A0A10;
+		color : #FFFFFF;
+		font-family : Arial, Helvetica;
+	}
+
+
+	a			
+	{	
+		color : #C1CCBE;			/* #222244;			color: #8888CC; */
+		font-weight : bold;
+		text-decoration : none; 
+		border : none; 
+	}
+
+	a:visited
+	{	
+		color: #759372;				/* #557755;	 #CCBB99; } */
+	}
+
+	a.selected
+	{
+		color: #EEEECC;
+	}
+
+	a:hover		
+	{ 
+		color : #FFFFFF;
+		background-color : transparent;
+	}
+
+	#scrollee
+	{
+		/*	"relative" is a "Bone to JSless clients."
+			Seems as very risky. "absolute" would be more solid.
+		*/
+		position : relative;
+
+		margin-left : 230px;
+		top : 80px;
+		background-color : transparent;
+	}
+
+	#menu 
+	{
+		position : fixed;
+		left : 20px;
+		top : 40px;
+		width : 200px;
+		padding : 5px;
+		overflow : hide;
+	}
+
+	#img_menu_selector
+	{
+		visibility : hidden;
+	}
+
+	.section
+	{
+		width : 90%;
+		padding-left : 20px;
+		padding-right : 30px;
+		font-size : 15px;
+		color:#FFFFFF;
+	}
+
+
+	.list
+	{
+		height : 20px;
+		display : block;
+		font-size : 14px;
+		font-weight : bold;
+	}
+
+	ul
+	{
+		list-style-type : none;
+	}
+
+	#menu-background
+	{
+		position : absolute;
+		left : -10px;
+		height : 607px;
+		z-index : -1;
+	}
+
+
+	div.dynamic_image_placeholder
+	{
+		position : relative;
+		padding-top : 10px;
+		padding-bottom	: 10px;
+		/* left : 40px; ? */;
+	}
+
+	img.dynamic_image_placeholder
+	{
+		position : relative;
+		left : 10%;
+		width : 80%;
+	}
+
+	img.hider
+	{
+		position : absolute;
+		left : 0px;
+		top : 0px;
+		visibility : hidden;
+		z-index : 2;
+	}
+
+
+	#canvas_wrap	
+	{
+		/* this is a big problem with mobiles */
+		position : fixed;
+
+		width : 100%;
+		height : 100%;
+		top : 0px;
+		left : 0px;
+		z-index : -1;
+		visibility : hidden;
+		overflow : hidden;
+	}
+
+	#canvasBgIm
+	{
+		position : absolute;
+		top : 0px;
+		left : 0px;
+		width : 1024;
+		height : 100px;
+	}
+
+	#canvas
+	{
+		position : relative;
+		left : 0px;
+		top : 0px;
+		background-color : transparent;
+	}
+
+
+
+

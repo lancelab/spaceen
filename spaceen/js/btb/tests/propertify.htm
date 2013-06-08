@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html><head><title>Tests</title>
+
+	<meta http-equiv="Content-Type"	content="text/html; charset=UTF-8">
+    <script src="../debug.js"></script>
+    <script src="../main.js"></script>
+
+<body><pre>
+
+
+	<script>
+
+		var aa = {};
+		btb$.propertify( aa, 'bb=1' );
+		btb$.debug( aa, 'one layer: aa=' );
+
+		btb$.propertify( aa, 'cc.dd.4' );
+		btb$.debug( aa, 'no change: aa=' );
+
+		btb$.propertify( aa, '=4' );
+		btb$.debug( aa, 'aa.""=4 :' );
+
+		var bb = {};
+		btb$.propertify( bb, 'cc.dd.ee=2' );
+		btb$.debug( bb, 'three layers: bb=' );
+
+		btb$.propertify( bb, 'cc.ff=3' );
+		btb$.debug( bb, 'added: bb=' );
+
+		btb$.propertify( bb, 'cc.dd=4' );
+		btb$.debug( bb, 'overridden: bb=' );
+
+
+	</script>
+	
+
+</pre></body></html>
+

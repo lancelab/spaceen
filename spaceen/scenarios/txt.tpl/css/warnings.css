@@ -1,0 +1,71 @@
+
+	/*********************************************************************/
+	/* Landing messages                                                  */
+	/*********************************************************************/
+
+	#loading_wrapper
+	{
+		position			: absolute;
+		width				: 100%;
+		height				: 100%;
+		top					: 0px;
+		left				: 0px;
+		z-index				: -3;
+	}
+
+	#loading
+	{
+		margin				: auto;
+		top					: 0px;
+		background-color	: #000000;
+		color				: #AAAAAA;
+		text-align			: center;
+		font-size			: 18px;
+		z-index				: -4;
+	}
+
+	#canvas_warning
+	{
+		position			: absolute;
+		top					: 20px;
+		width				: 100%;
+		height				: 600px;
+
+		font-size			: 18px;
+
+		color				: #FFBBBB;
+
+		display				: none;
+		z-index				: -3;
+		display				: none;
+	}
+
+	#canvas_warning_subdiv
+	{
+		margin				: auto;
+		width				: 400px;
+	}
+
+	#java-script-disabled
+	{
+		position			: absolute;
+		top					: 20px;
+		width				: 100%;
+		height				: 600px;
+		color				: #FFBBBB;
+		text-align			: center;
+		font-size			: 18px;
+		z-index				: -2;
+	}
+
+	#js-disabled-subdiv
+	{
+		position			: absolute;
+		left				: 250px;
+		top					: 20px;
+		font-size			: 14px;
+		font-weight			: bold;
+		color				: #EEAAAA;
+	}
+
+

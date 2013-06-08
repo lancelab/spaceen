@@ -1,0 +1,11 @@
+
+
+
+Mobile is still choppy at image-echo-mode ...
+Direct draw still has an extra speed resource:
+	make twin buffer
+	make #canvas-twin : { visibility : hidden; and
+	change visibility right after direct-draw
+	this will save an extra browser paste
+
+	problem with resize still remains ... possibly blur edges at risize
