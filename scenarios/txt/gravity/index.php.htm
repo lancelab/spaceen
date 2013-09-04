@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html><head><title>Gravity</title>
+
+		<meta name="description" content="Tiny 2D and 3D canvas library."> 
+		<meta name="keywords" content="Canvas, JavaScript, HTML5"> 
+
+
+    	<script type="text/javascript">
+			( function () {
+				document.write( "\t\t<style type=\"text/css\">" +
+					"#java-script-disabled, #scrollee, #menu, #canvas_wrap, #content { display:none; } " +
+					"#loading_wrapper{ display:block; }</style>\n"
+				);
+				///	detects canvas-enabled browsers and initiates animation scenario;
+				//	must be run as soon as possible to prevent landing flickers;
+				var btb				= window.btb$ = window.btb$ || {};		
+				var canvas			= document.createElement( 'canvas' );
+				btb.canvasEnabled	= canvas && canvas.getContext && canvas.getContext( '2d' ) && canvas;
+				if( btb.canvasEnabled )
+				{
+					document.write( "\t\t<style type=\"text/css\">#canvas_warning { display:none; }</style>\n" );
+				}
+			}) ();
+		</script>
+
+
+		<link rel="stylesheet"		href="../../common.tpl/css/warnings.css">
+		<link rel="stylesheet"		href="../../common.tpl/css/main.css">
+		<link rel="stylesheet"		href="css/main.css">
+
+	    <script type="text/javascript" src="../../../js/jquery.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+
+
+
+
+
+
+	</head>
+
+	<body>
+
+		<div id="loading_wrapper">
+			<div id="loading">
+				<h1><br><br>... loading ...</h1>
+			</div>
+		</div>
+		<div id="canvas_warning">
+			<div id="canvas_warning_subdiv">
+				This browser is not able to run canvas.<br>
+				Use modern browsers, FireFox, Chrome,<br>
+				Internet Explorer 9+, ...<br>
+			</div>
+		</div>
+		<div id="java-script-disabled">
+			<div id="js-disabled-subdiv">
+				JavaScript language is disabled in your browser.
+				This site is best viewed when JavaScript is enabled.<br>
+			</div>
+		</div>
+
+		<div id="canvas_wrap">
+			<img id="canvasBgIm" src="img/web_page/canvas_background.png">
+			<canvas id="canvas"> </canvas>
+			
+		</div>
+		<div id="menu" >
+
+			<div id="menu-background" >
+				<img id="img_menu_selector" src="img/web_page/lightonie.png" >
+			</div>
+
+			<div id="menu-content" >
+
+				<a id="m_introduction" class="list" href="#introduction" >.</a>
+				<a id="m_credits" class="list" href="#credits">.</a>
+
+			</div>
+
+
+		</div><!-- menu -->
+
+
+
+
+
+
+		<div id="scrollee" >
+
+			<div id="d_introduction" class="section" >
+
+			<a id="introduction"> </a><h1>Gravity ... </h1>
+
+				... is the word we use for something<br>
+				which holds these balls together ...<br><br>
+
+				
+				<table>
+					<tr><td>Navigation:</td>	<td class="attention">Shift + arrow-up/down:</td>		<td class="attention">forward/backward,</td></tr>
+					<tr><td></td>    			<td class="attention">Arrow-left/right:</td>			<td class="attention">left/right</td></tr>
+				</table>
+
+			</div><!-- d_introduction -->
+
+
+
+
+
+
+
+
+			<div id="d_credits"  class="section" >
+
+				<a id="credits" > </a>
+				<br><br>
+
+				Background:<br>
+				<ul style="list-style-type: none;">
+					<li>Modified image: http://www.jpl.nasa.gov/spaceimages/details.php?id=PIA12348</li>
+					<li>Courtesy NASA/JPL-Caltech</li>
+				</ul>
+				<br>
+
+				Site credits: <br>
+				<ul style="list-style-type: none;">
+					<li><a href="../../intro/landing">Demos</a></li>
+					<li><a href="../../../LICENSE" class="copyright">(c) 2013 KVK</a></li>
+					<!-- li>EMail:		beaverscript (@) landkey (.) net.</li -->
+				</ul>
+					
+			</div><!-- d_credits -->
+
+
+		</div><!-- id="scrollee" -->
+
+
+
+	</body>
+</html>
+

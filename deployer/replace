@@ -1,0 +1,26 @@
+#!/bin/bash -e
+
+#-e in "bash -e" plainly: exit if fails
+
+#	//\\//	Makes replacements in *.js files
+
+REGEX="^xxxxxxxxxx$"	
+REPLACER="xxxxxxxxxx"
+#REGEX="^x\{1111111,1111111\}"	
+
+
+find ../target \( -type d -name deployer -prune \) -o -name *.js -exec sed -i "s/$REGEX/$REPLACER/g" \{\} \;  -exec  echo \{\} \;
+
+
+
+
+
+#works:
+#find ./target -type f -exec sed -i "s/$REGEX/$REPLACER/g" \{\} \;  -exec  echo \{\} \;
+
+
+#bad: echo 's/$REGEX/$REPLACER/g'
+#good: echo "s/$REGEX/$REPLACER/g"
+
+
+

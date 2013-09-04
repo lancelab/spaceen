@@ -1,0 +1,131 @@
+
+	html
+	{
+		width	: 100%;
+		height	: 100%;
+		margin	: 0px;
+		padding	: 0px;
+	}
+
+	body
+	{
+		margin				: 0px;
+		border				: 0px;
+		padding				: 0px;
+
+		font-family			: Helvetica, Arial, sans-serif;
+		font-size			: 20px;
+		line-height			: 20px;
+
+		background-color	: #FFFFFF;
+		color				: #BBBBBB;
+	}
+
+
+	a			
+	{	
+		border : none; 
+		padding-right : 15px;
+		text-decoration : none; 
+		font-weight : bold;
+		font-family : arial, helvetica;
+		font-size : 12px;
+		color : #AAAAAA;
+	}
+
+	a:visited
+	{	
+		color : #AAAAAA;
+	}
+
+	a:selected
+	{	
+		color : #333333;
+	}
+
+	a:hover		
+	{ 
+		color : #000000;
+	}
+
+	#canvas_wrap
+	{
+		position			: absolute;
+		width				: 94%;
+		height				: 87%;				/* who knows why not 100% on FF? bottom status bar? ... */
+		background-color	: transparent;
+		padding				: 0px;
+		margin				: 3%;
+	}	
+
+
+	#canvas
+	{
+		width				: 100%;
+		height				: 95%;
+	}
+
+	#content
+	{
+		width				: 100%;
+		height				: 7%;
+		padding				: 0px;
+		margin				: 0px;
+		background-color	: transparent;
+	}
+
+	#right-content-btb
+	{
+		float				: right;
+		padding-right		: 0px;
+		margin-right		: 0px;
+		width				: 250px;
+		text-align			: right;
+	}
+
+	#right-content-btb a
+	{
+		padding-right		: 0px;
+	}	
+
+	#left-content-btb
+	{
+		margin-right		: 155px;		
+	}
+
+
+	/* //\\ Deviations for warnings */
+
+	#loading_wrapper
+	{
+		position	: fixed;
+	}
+
+	#canvas_warning
+	{
+		position	: fixed;
+		text-align	: center;
+		color		: #AAAAAA;
+	}
+
+	/*	Modifies warnings */
+	#java-script-disabled
+	{
+		top			: 0px;
+		left		: 0px;
+		text-align	: left;
+		color		: #AAAAAA;
+	}
+
+	/*	Modifies warnings */
+	#js-disabled-subdiv
+	{
+		top					: 5px;
+		left				: 3%;
+		font-size			: 12px;
+		color				: #AAAAAA;
+	}
+
+	/* \\// Deviations for warnings */
+
+

@@ -1,0 +1,153 @@
+
+	/*********************************************************************/
+	/* Landing messages and canvas wrapper contents                                               */
+	/*********************************************************************/
+
+	#loading_wrapper
+	{
+		position			: absolute;
+		width				: 100%;
+		height				: 100%;
+		top					: 0px;
+		left				: 0px;
+		z-index				: -3;
+	}
+
+	#loading
+	{
+		margin				: auto;
+		height				: 300px;		/* TODM works well? */
+		top					: 0px;
+		/* background-color	: #000000; */
+		color				: #AAAAAA;
+		text-align			: center;
+		font-size			: 18px;
+		display				: none;
+		z-index				: -4;
+	}
+
+	#canvas_warning
+	{
+		position			: absolute;
+		top					: 20px;
+		width				: 100%;
+		height				: 600px;
+
+		font-size			: 18px;
+
+		color				: #FFBBBB;
+
+		display				: none;
+		z-index				: -3;
+		display				: none;
+	}
+
+
+	#canvas_warning_subdiv
+	{
+		margin				: auto;
+		width				: 400px;
+	}
+
+	#java-script-disabled
+	{
+		position			: absolute;
+		top					: 20px;
+		width				: 100%;
+		height				: 150px;
+		color				: #FFBBBB;
+		text-align			: center;
+		z-index				: -2;
+	}
+
+	#js-disabled-subdiv
+	{
+		position			: absolute;
+		left				: 250px;
+		top					: 0px;
+		font-size			: 15px;
+		font-weight			: bold;
+		color				: #EEAAAA;
+	}
+
+
+	#canvas
+	{
+		display				: none;
+	}
+
+
+	#canvasBgIm
+	{
+		position			: absolute;
+		width				: 100%;
+		height				: 91%;
+		top					: 0px;
+	}
+
+
+	#canvasBgIm2
+	{
+		position			: absolute;
+		width				: 100%;
+		height				: 91%;
+		top					: 0px;
+	}
+
+	#canvasFgIm
+	{
+		position			: absolute;
+		width				: 100%;
+		height				: 91%;
+		top					: 0px;
+	}
+
+
+
+
+	#canvasBgIm
+	{
+		z-index				: 1;
+	}
+
+	#canvasBgIm2
+	{
+		z-index				: 2;
+	}
+
+	#canvas
+	{
+		z-index				: 3;
+	}
+
+	#canvasFgIm
+	{
+		z-index				: 4;
+	}
+
+	#content
+	{
+		z-index				: 5;
+	}
+
+
+
+
+
+	#canvas,
+	#canvasBgIm2
+	{
+		display				: none;
+	}
+
+
+	#canvasBgIm,
+	#canvasFgIm
+	{
+		display				: block;
+		visibility			: visible;
+	}
+
+
+
+

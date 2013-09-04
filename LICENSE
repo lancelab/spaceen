@@ -2,5 +2,5 @@
 All Spaceen parts except "spaceen/scenarios" have MIT-license:
 Copyright (c) 2013 Konstantin Kirillov. Landkey.net
 
-Files in "spaceen/scenarios" folder licensed under their own licenses and bundled with github package for demo purposes.
+Files in "spaceen/scenarios" folder licensed under their own licenses and may be bundled with core package for demo purposes.
 

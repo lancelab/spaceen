@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+#-e in "bash -e" plainly: exit if fails
+
+#REGEX="MM"	
+#REPLACER="AA"
+
+#find ./target -type f -exec sed -i "s/$REGEX/$REPLACER/g" \{\} \;  -exec  echo \{\} \;
+
+#bad: echo 's/$REGEX/$REPLACER/g'
+#good: echo "s/$REGEX/$REPLACER/g"
+
+
+
