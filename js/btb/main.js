@@ -4,16 +4,17 @@
 //			Copyright (c) 2013 Konstantin Kirillov. License: MIT.
 
 
-( function () {
+( function ( window, undefined ) {
 
+	var btb = window.btb$		= window.btb$	|| {};		
+	var det = btb.detected		= btb.detected	|| {};		
 
-	var btb = window.btb$ = window.btb$ || {};		
+	btb.effective_hostname = window.location.hostname.toLowerCase(); // mydomain.com		// TODM move to det
+	btb.effective_hostname_without_www = btb.effective_hostname.replace( /^www\./, '' );	// TODM move to det
 
-	btb.effective_hostname = window.location.hostname.toLowerCase(); // mydomain.com
-	btb.effective_hostname_without_www = btb.effective_hostname.replace( /^www\./, '' );
-
-
-
+	var ww = new Date();
+	det.timeStamp = ww.getUTCDate() + '-' + ww.getHours() + '-' + ww.getMinutes() + '-' + ww.getSeconds() + '-' + ww.getMilliseconds();
+	det.effective_hostname = btb.effective_hostname;
 
 
 	//	//\\	Detections ///////////////////////////
@@ -34,6 +35,11 @@
 	//	Usage: 	For IE, Mozilla, AppleWebKit, WebKit, Chrome, Gecko:
 	//			like this:	if(tp.core.browser.IE),
 	//						then tp.core.browser.IE[1] contains a version.
+
+	//	iPxxxxxxxx
+	//	http://stackoverflow.com/questions/9548012/user-agent-string-for-iphone-4s
+	//	http://stackoverflow.com/questions/12305566/what-is-the-ios-6-user-agent-string
+
 	//======================================================================================
 	btb.browser = ( function () {
 
@@ -92,11 +98,11 @@
 
 	( function () {
 
-		var det = btb.detected = {};
-
 		//	TODM improve later
-		btb.detected.mobile =	navigator.userAgent.match( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i );
-		btb.detected.userAgent = navigator.userAgent;
+		var ww					= window.location;
+		btb.detected.location	= ww.hostname + '/' + ww.pathname + '?' + ww.search;
+		btb.detected.mobile		= navigator.userAgent.match( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i );
+		btb.detected.userAgent	= navigator.userAgent;
 
 	    var dpr = 1;
 	    if(	window.devicePixelRatio !== undefined ) dpr = det.dpr = window.devicePixelRatio;
@@ -117,11 +123,29 @@
               ctx.msBackingStorePixelRatio ||
               ctx.oBackingStorePixelRatio ||
               ctx.backingStorePixelRatio || 1;
+
 			btb.detected.canvas_bsr = bsr;
+			//	http://www.html5rocks.com/en/tutorials/canvas/hidpi/
+			btb.detected.canvas_dpr_per_bsr = bsr / det.dpr;
+
+			/* possibly misleading and useless
+			//	https://developer.apple.com/library/safari/documentation/AudioVideo/Conceptual/HTML-canvas-guide/SettingUptheCanvas/SettingUptheCanvas.html
+		  	//  if ( 'devicePixelRatio' in window )	// TODM legal? syntax? Why not  window.devicePixelRatio !== window.undefined
+		  	if ( window.devicePixelRatio !== undefined )
+			{
+		        if ( dpr > 1 && context.webkitBackingStorePixelRatio < 2 )
+				{
+		            devPixRatio = window.devicePixelRatio;
+		        }
+		    }
+			*/
+
 		}else{
 			btb.detected.canvas_bsr = null;
 		}
 		btb.detected.canvasWorks = !!btb.canvasEnabled;
+
+
 
 
 		//	https://developer.mozilla.org/en-US/docs/Web/API/window.outerWidth
@@ -145,7 +169,32 @@
 		var wratio			= 2;
 		det.screenSide		= Math.sqrt( det.screenVolume / wratio );
 		det.scrMinSide		= Math.min( width, height );
+
+		//	http://www.sitepoint.com/support-retina-displays/
+		//	http://stackoverflow.com/questions/15335442/detecting-a-retina-display-ipad-with-javascript
+		//	http://www.html5gamedevs.com/topic/543-retina-displays-question/
+		//	This gives "false" positives on FF when zoom-in is on because det.dpr may be = 3:
+		det.isRetina =
+			det.dpr > 1 ||
+			(	window.matchMedia &&
+				window.matchMedia( "(-webkit-min-device-pixel-ratio: 1.5),(-moz-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)").matches
+			);
+	
+		det.browser	= btb.browser;
+
+		var wreg = '';
+		/// sets iPxxxx test from OS 5 to 10
+		for( var wi = 4; wi < 10; wi++ )
+		{
+			if( wi > 5 ) wreg += '|';
+			wreg += '(iPhone OS ' + wi +'_)|(CPU OS ' + wi +'_)';
+		}
+		var wreg = new RegExp( wreg, "i" );
+
+		det.browser.iPx5Plus = wreg.test( navigator.userAgent ); 
+
 	}) ();
+
 
 	//	\\//	Detections ///////////////////////////
 
@@ -624,9 +673,10 @@
 					"Possible error expanation = " + arguments[ 2 ]
 				);
 			});
+			btb.ifdeb( '... text is sent to: ' + url );
 	};
 
 
 
-}) ();
+}) ( window );
 

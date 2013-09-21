@@ -74,30 +74,29 @@
 
 	#canvas
 	{
+		position			: absolute;
 		width				: 100%;
 		height				: 100%;
+		top					: 0px;
 		z-index				: 1; 
 	}
+
 
 	#content
 	{
 		position			: absolute;
 		width				: 100%;
-		height				: 0px;
+		height				: 4%;
 		top					: 94%;
 		padding				: 0px;
 		margin				: 0px;
 		background-color	: transparent;
-		z-index				: 2;
+		z-index				: 20;
 	}
 
-	#right-content-btb
-	{
-		float				: right;
-		padding-right		: 0px;
-		margin-right		: 0px;
-		text-align			: right;
-	}
+
+
+
 
 
 
@@ -107,23 +106,23 @@
 
 	#left-content-btb
 	{
-		margin-right		: 220px;		
+		margin-right		: 115px;		
 	}
 
 	#right-content-btb
 	{
-		width				: 200px;
+		width				: 110px;
+		float				: right;
+		padding-right		: 0px;
+		margin-right		: 0px;
+		text-align			: right;
 	}
 
 	#right-content-btb a
 	{
 		padding-right		: 20px;
+		padding-left		: 0px;
 	}	
-
-
-
-
-
 
 
 	/* //\\ Deviations for warnings. TODM-copy-pasted. */
@@ -156,36 +155,6 @@
 
 
 
-
-	
-	/*	//\\//	canvas wrappion */
-
-
-
-	/* ************ canvas and content ************* */
-	#canvas
-	{
-		position			: absolute;
-		width				: 100%;
-		height				: 91%;
-		top					: 0px;
-	}
-
-	#content
-	{
-		position			: absolute;
-		width				: 100%;
-		height				: 4%;
-		top					: 94%;
-		padding				: 0px;
-		margin				: 0px;
-		background-color	: transparent;
-	}
-
-
-
-
-
 	/* ************ content links ************* */
 	#content a			
 	{	
@@ -208,7 +177,7 @@
 
 	#content a:hover		
 	{ 
-		color : #222222;
+		color : #DDDDDD;
 	}
 
 

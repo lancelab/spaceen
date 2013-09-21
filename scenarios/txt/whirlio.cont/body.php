@@ -36,7 +36,19 @@
 
 			<div id="d_introduction" class="section" >
 
-			<a id="introduction"> </a><h1>Guest Readme</h1>
+			<a id="introduction"> </a><h1>Whirlio. Guest Readme</h1>
+
+
+				<ul>
+					<li>
+						<table>
+							<tr><td>Navigation:</td><td class="attention">Shift + arrow up/down:</td>	<td class="attention">forward/backward,</td></tr>
+							<tr><td></td>    <td class="attention">left/right:</td>				<td class="attention">left/right</td></tr>
+						</table><br>
+					</li>
+				</ui>
+
+
 				This site allows to play, autosolve, and craft board puzzles derived from game <a href="http://www.whirlio.com/doc/whirly.htm">Whirly</a>.<br>
 				All puzzles are loaded from text files called gamions.<br>
 				Gamions can be pasted into this site or can be loaded from Internet links.<br>

@@ -10,6 +10,7 @@
 				<a id="m_three_d"	class="list" href="#three_d">3D-Sites</a>
 				<a id="m_logos" 	class="list" href="#logos">Animated Logos</a>
 				<a id="m_source" 	class="list" href="https://github.com/lancelab/spaceen/">Source</a>
+				<a id="m_tester"	class="list" href="#tester">Browser Tester</a>
 				<a id="m_credits"	class="list" href="#credits">About</a>
 
 			</div>
@@ -32,40 +33,24 @@
 					<a id="three_d"> </a><h2>3D-Navigational Sites</h2>
 
 				<ul>
-					<li>
-						<table>
-							<tr><td>Use:</td><td class="attention">Shift + arrow up/down:</td>	<td class="attention">forward/backward,</td></tr>
-							<tr><td></td>    <td class="attention">left/right:</td>				<td class="attention">left/right</td></tr>
-						</table><br>
-					</li>
-					<li>
-						<ul>
-							<li>
-								<ul>
-									<li><a href="../../clean/fading-tree/">Interactive Photography - extending photos to 3D</a></li>
-									<li><a href="../../clean/mycity/">My City</a></li>
-									<li><a href="../../txt/whirlio-clouds/">Clouds</a></li>
-									<li><a href="../../nebulae/site">Nebulae</a></li>
-									<li><a href="../../txt/whirlio-frames/">Frames</a></li>
-									<li><a href="../../txt/gravity/">Gravity</a></li>
-								</ul>
-							</li>
-						</ul>
+					<li><a href="../../nebulae-demo/site/?imagesToLoad.0=0">Parallax Design</a></li>
+					<li><a href="../../txt/whirlio-frames/">Frames</a></li>
+					<li><a href="../../clean/fading-tree/">Interactive Photography - extending photos to 3D</a></li>
+							<!-- li><a href="../../clean/mycity/">My City</a></li -->
+					<!-- li><a href="../../txt/whirlio-clouds/">Clouds</a></li -->
+					<li><a href="../../txt/gravity/">Gravity</a>
+						<br>
 						<br>
 					</li>
 					<li class="small-font">
-						Features:
 						<ul class="circle">
+							<li>T a r g e t e d  &nbsp;&nbsp;&nbsp;  F e a t u r e s<br><br></li>
 							<li>No need for WebGL, Direct X, OpenGL. Only mainstream canvas enabled browsers,</li>
-							<li>Politely descends to alive JavaScript-less,</li>
-							<li>Scalable on window-resize in both JS-less and JS-enabled browsers,</li>
+							<li>JavaScript-less fallback.</li>
+							<li>Scalable on window-resize in JavaScript and JavaScript-less modes,</li>
 							<li>FF, Chrome, Opera, mobile, IE9 working,</li>
-							<li>Text-content is maintainable for html-aware-non-programmer-owner,</li>
-							<li>(perhaps after more work, will be less choppy on two-year-old mobiles,)</li>
-							<li>Apparently, can be easily recoded to HTML 4, no canvases.</li>
-							<!--	(Note for Freelancer.com clients and Reflexlogic:<br>
-									it seems coder no longer can reply to your messages while bid is in progress with other coder.)
-							-->
+							<li>Text-content is maintainable for html-aware-non-programmer,</li>
+							<li>After elaboration, should be not choppy on two-year-old mobiles.</li>
 						</ul>
 					</li>
 				</ul>
@@ -108,6 +93,10 @@
 							<li><a href="../../logo/words/?noratio&cflyer.fillFrom=200&cflyer.fillSprites=0&captured=-jerks">Shaking Words. Curves.</a></li>
 						</ul>
 					</li>
+					<li><a href="../../logo/animated-img/?noratio" title="Aspect ratio is not preserved">Animated image</a></li>
+					<li><a href="../../logo/animated-jpeg/?noratio" title="Aspect ratio is not preserved">Animated jpeg</a></li>
+					<li><a href="../../logo/animated-img-shanked/?noratio" title="Aspect ratio is not preserved">Animated image shanked</a></li>
+
 					<!--
 					<li>Aspect ratio is preserved</li>
 						<ul>
@@ -120,6 +109,17 @@
 			</div><!-- d_logos -->
 
 
+
+
+			<a id="tester"> </a>
+			<div id="d_tester"  class="section" >
+				<h2>Browser Tester</h2>
+				<ul>
+					<li><a href="../../tester/apple-canvas" title="Apple mobile. drawImage test.">Apple mobile. drawImage test.</a></li>
+				</ul>
+				<br><br>
+
+			</div><!-- d_tester -->
 
 
 

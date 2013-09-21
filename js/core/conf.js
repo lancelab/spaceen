@@ -1,0 +1,556 @@
+
+// //\\//	Sets configuration data with possibly most common values.
+//			Comments do serve as part of documentation.
+
+
+
+( function () {
+
+						window.btb$			= window.btb$			|| {};		
+	var graph		=	window.btb$.graph	= window.btb$.graph		|| {};
+
+
+
+	graph.generic_conf =
+	{
+
+		debugmode				: false,
+
+		doLogDetected			: false,
+		apple5					: false,	// do detection patches for this ...
+
+		// //\\	Generic animation parameters /////////////////////////////
+
+		in3D					: null,		// story and display happens in 3D
+
+		itemsMax				: null,
+		backwardInTime			: null,
+		runInfinitely			: null,	// Forces reinitialization of flyer after each playPeriod
+		reinitAfterIteration	: null,
+		reinitSpritesInResize	: true,
+
+
+		//	ATTENTION: changing playPeriod, ticksPeriod, turnTicksPoint should be done
+		//	with care about their mutual relation.
+
+		playPeriod				: 10000,
+		ticksPeriod				: 10000,	//	last frame sitll will be drawn if not dontDrawAfterPeriod
+		turnTicksPoint			: null,		//	Future replacement for past-versions-turnTicksPoint
+
+		transitionalBugTicksPoint : true,	// true lets bug to live: sets turnTicksPoint to  // TODO bug
+											// conf.turnTicksPoint	= conf.turnTicksPoint || conf.ticksPeriod;
+											// in flyer.init_sprites which is "inconsistent" .. "gradually" removing this bug
+
+
+
+		turnPonitPause			: null,		//	in ms
+		use_setTimeout			: false,	//	Do ignore modern frame requestors
+		timeFromTicks			: false, 	//	Ticks do control time. time = ticks * conf.tickTimeStep (( see run_time_utility.js ))
+
+		timeScale				: 1,		//	F.e: 0.2 will squeeze more drawings into time unit, 2.0 will make drawing sparser;
+											//	still fits ticksPeriod into playPeriod precisely.
+
+											//	Changing ticksPeriod, does not necessary changes the scenario.
+											//	It does not if other scenario ticks-points are changed proportionally.
+											//	What really changes: timeScale (see comments ).
+											//	Ticks is an easy "bridge" to timeless animation.
+
+		bgCnsOn					: null,		//	background canvas is in use;
+
+		dontDrawAfterPeriod		: null,
+		drawFromBTAfterStopped	: null,		// draw from virt=b or virt=t buffers if dontDrawAfterPeriod came to effect
+		stopAnimChainAfterIter	: null,
+		unfadeBgImgTimeMs		: 1000,		// !!unfadeBgImgTimeMs does it immediately after anim. started;
+
+		frozenTicksStart		: null,		// autoset if missed here
+		keepAtResize			: true,		// keeps memory-image at resize; in effect only for virt=v
+
+		insertFMemBefore		: null,		// null disables this feature;
+											// number of the item before which to insert frameMemory;
+											// remember, items are drawn from itemsMax - 1 to 0;
+											// effective only for twin buffers
+
+		memLoss					: null,		// frame memory control:
+											//		falseful - no memory;
+											//		-1 - absolute memory;
+											//		float 0< ... <= 1 means memory loss per one second:
+											// for non-twin-buff: 0.1 - 0.4 is good; 
+		leftMemorySensor		: null,		// threshold; if left is less, then do bookkeep the loss,
+		critPointmemLoss		: null,	 	// 0.7 - for non-twins;	// memory loss per one second in pause and culm. start
+
+
+		//	There is duplication and mess: TODM
+		clearEnd				: null,		// clears frame-memory at conf.clearEnd && mstones.iterationExitEntered
+		memClearAt0				: null,		// truefull or falseful; trueful clears mem at
+											// mstones.culminationEnterEntered when no-memory-or-some-loss
+
+		picClearAt0				: null,		// don't draw flyer's sprites at middle-culmination-event;
+		picClearAtEnd			: null,		// don't draw flyer's sprites at interation-end-event;
+		picClearInPause			: null,
+		pictFadeInPause			: null,		// instead of normal change of alpha in pause-area, decline alpha from 1 to 0.
+
+		spaceTransf				: null,		// true does resort to browser's native context transformations
+
+
+
+		// //\\	GUI settings
+
+		keepLoadingMsgTillImgLoad	: true,
+
+		// \\//	GUI settings
+
+
+
+
+
+		// //\\	Canvas DOM-element CSS-related parameters.
+		//		They override *.css - files parameters.
+
+		//	//\\ USED AT WINDOW RESIZE OR AT START UP
+		//:	used only when csize === 'f'; 
+		cwidth					: 700,		// if 0, vwidth is used for master_canvas;
+		cheight					: 400,		// if 0, vheight is used for master_canvas, only when csize === 'f';
+
+
+		//:	csize and cCSS control master_canvas dimensions;
+		//	if both are falseful, the dimensions reset to fill browser's window;
+		//	see run_graph.js
+		csize					: '',		// 'f'	for fixed: use cwidth and and cheight for canvas size
+											// ''	when window resized, rescales canvas to window size, cheight and cwidth are ignored
+		cCSS					: null,		// if truthful and not csize === 'f', master_canvas follows canvas.style CSS.
+											// Otherwise, canvas is fit to screen, and in particular will GO OUT OF width set to %.
+		//	\\// USED AT WINDOW RESIZE OR AT START UP
+
+
+		preventCanvasAbsPos		: null,		// Possibly done to resolve conflict with projects relying on browser CSS fluid management
+		min_width				: null,		// 500,		// set to 0 to ignore
+		min_height				: null,		// 200,		// set to 0 to ignore
+
+		body_overflow			: '',		// 'hidden',
+		wrap_overflow			: '',		// 'hidden',
+
+		cBgColor				: null,		// 'transparent', ... 
+											// null makes this par. ignored.
+
+		//.	Sets canvas-HTML-element background dynamic resizing
+		//		0		- do nothing,
+		//		-1		- set to window height,
+		//		> 0		- set to window_width * canvasHeightToWidth
+		canvasHeightToWidth		: null,
+
+		underCanvasInSync		: null,		// Image undercanvas is in sync with canvas dimensions.
+
+		// \\//	Canvas DOM-element CSS-related parameters.
+
+
+
+		//:	Set dimensions which will be a base for sprite spatial parameters.
+		//	Final drawing will be proportionally rescaled to real browser canvas size.
+		vwidth					: 700,		// virtual width
+		vheight					: 400,		// virtual height
+		virt					: null,		// b - create in memory and use virtual-offscreen canvas as a master,
+											// t - twin buffers
+											// v - virtual, keep calculating master image, but never draw it to memory-canvas,
+											// falseful -	draw right to canvas omitting notion of virtual image;
+											//				vwidth, and vheight have no effect
+
+		noratio					: false,	// false	-	keeps ratio proportionally when putting image from virt='m' to canvas,
+											//				chooses less distructive dimension,
+											//				effective only for virt != ''.
+
+		//.	If set to "false", skips drawing while keepeing calling animation the chain.
+		animation_is_allowed	: true,		// "false" does "kill" animation "thread"
+
+		screen_center_x			: null,
+		screen_center_y			: null,
+
+		//	//\\	TRANSITIONAL
+		stop_on_click			: false,	//	TODM misleading name; must be "toggle drawing frames on click";
+											//	"true" does: nothing new is drawn, but frames are spinning
+		toggle_draw_on_click	: null,		//	in mean time, overrides stop_on_click: graph.conf.toggle_draw_on_click || graph.conf.toggle_draw_on_click === 0
+		//	\\//	TRANSITIONAL
+
+ 
+		stop_afer_tick			: null,		//	TODM misleading name; must: idlify "animation thread" till toggling the thread
+											//	"true" fires frames click by click
+
+
+		//:	Apparently enabled only for 3d mode
+		never_let_internal_evol : null,
+		stop_own_move_on_click	: null,		//	stops internal evolution of the scened, but animation is spinning and frames are drawing
+		startFromStopped		: null,		//	Internal system movement stopped at startup.
+											//	Has nothing to do with animation frames display.
+											//	Enabled only when stop_own_move_on_click is enabled.
+
+
+
+		disable_landing_loading_warning : true,
+		doSplashOnImgLoad		: null,
+		landingSplashDuration	: 1000,		// ms
+
+		// \\//	Generic animation parameters ///////////////////////////
+
+
+
+
+
+
+
+		//.	FlyingShadows ///////////////////////
+		runFlyer				: null,
+
+
+
+
+
+
+		//	//\\	Crafting casts
+		rerandom				: null,	// trueful forces reinitialization and randomization at second iteration
+										// when capturer.config has been submitted.
+		scaffold				: null,	// '', puts sign, scaffold on result canvas
+		//	\\//	Crafting casts
+
+
+		//	//\\ Gravity-project parameters ////////////////////////
+		//	Sets number of "fake grains". Mostly useless.
+		grainsNumber			: null,
+		//	\\// Gravity-project parameters ////////////////////////
+	
+		addon : {},
+
+
+
+		//	//\\	3D	////////////////////////////////////////////
+		conf3D :
+		{
+
+			domCarousel	:
+			{
+				on					: null,
+				placement			: 'vertical',
+				arrangement			: 'circle',
+				radius				: 500,
+				distance			: 500,
+				//stepX				: 0,
+				//stepZ				: 0,
+				stepY				: 10
+			},
+
+
+			putItemsToCircleR		: null,
+			putUniformly			: null,	// in effect only when above is "trueful"
+
+
+			//:	Dimensions of space-box confining all the 3D-items
+			//boxMaxX					: 2000,		
+			//boxMaxY					: 2000,
+			//boxMaxZ					: 800,
+
+			boxCenterX				: 0,
+			boxCenterY				: 0,
+			boxCenterZ				: 0,
+
+			originY					: 900,
+
+			originYMax				: 1900, //1800,
+			originYMin				: 0,
+
+			xMax					: 120,
+			xMin					: -120,
+			zMax					: 200,
+			zMin					: -200,
+
+			//:	Restricts drawing of image in 3D-subproject
+			fromObserverYMin		: 5,
+			fromObserverYMax		: 11200,
+
+
+			//:	These are in effect iff above is set to true
+			movingObserverStepX		: 5,
+			movingObserverStepY		: 5,
+			movingObserverStepZ		: 5,
+
+			boundaryProtectionDisabled : true,	// "Don't set this to ''false'' unless badly short on resources"
+
+			scale					: 1000,	// TODM call this lensScale
+
+			//. this is for graph.funny_graphics_2D.createRandomDisks
+			generate_backg_img			: false,
+
+			//: Do increase lensTran scale if exceeded
+			//:	Fixes problem with large screens by magnifying 
+			//	canvas proportionally when window-width becomes wider
+			//	than this threshold.
+			//	This threshold should be of source-image-width;
+			//	( see lens_transformation.js .reset() )
+			//	This spoils quality of drawing, but for smoke, clouds
+			//	this "blur" can be tolerated.
+			bigScreenWidthThreshold		: null, // 1300,
+			bigScreenHeightThreshold	: null,	// 600
+
+			bgScenario					:
+			{
+				mode					: null	//	done: 'infCylinder', 'cube'
+				// speed				: 0.5
+			}
+
+		},
+
+
+		//	//\\	Sprite images	//TODO mess mix "gravity/generic/orphans"
+		animatorWaitsForImgLoad : true,
+		sceneRunnerWaitsForImg	: true,
+		//	\\//	3D	////////////////////////////////////////////
+
+
+		///	"External sprite" template
+		cflyer					:
+		{
+			dconf				:
+			{
+				shape_functions				: [],
+				shape_paths					: []
+			},
+
+			final_width			: 80,					// tile dimension;
+			final_height		: 150,					// tile dimension;
+
+			///	sets parameters of clips in the image of clips
+			frameScenario :
+			{
+				on						: null,			// "falseful" disables scenario;
+				size					: [ 320, 225 ],	// tile dimensions;
+				gridXN					: 10,			// row lenght;
+				gridYN					: 8,			// column hight;
+				cellIteration1Offset	: 14,			// begins first part of play in the first iteration;
+				cellIterationNextOffset	: 55			// begins looping infinitely of the second part of play after first iteration;
+			}
+
+		},
+		usprite					: {},
+
+
+	//	//\\	Load-images-config
+
+	imagesToLoad :
+	[
+		///	mode is a flag. If !!mode, then load is ignored
+		{
+			name			: 'load3DImg',
+			mode			: '',	//	'single',
+									//	'template',  like load3DImgPath/load3DImgBase.load3DImgExt
+									//	'names',
+			path			: '',
+			template		: '',
+			ext				: '',
+			count			: null,
+			lastImgIsSingle	: null,		//	true enables "non-spreading" last image along external-sprites in "prepare3D" in a way like:
+										//	wModule = load3DImg.conf.lastImgIsSingle ? spr3D.length - 1 : spr3D.length
+			names			: []
+		},
+
+
+		///	mode is a flag. If !!mode, then load is ignored
+		{
+			name			: 'load2DImg',
+			mode			: '',	//	'single',
+									//	'template',  like load3DImgPath/load3DImgBase.load3DImgExt
+									//	'names',
+			path			: 'img',
+			template		: '2d',
+			ext				: 'jpg',
+			count			: 2,	// required for mode==='template';
+			names			: []
+		},
+
+
+		///	mode is a flag. If !!mode, then load is ignored
+		{
+			name			: 'loadCustomImg',
+			mode			: '',	//	'single',
+									//	'template',  like load3DImgPath/load3DImgBase.load3DImgExt
+									//	'names',
+			path			: '',
+			template		: '',
+			ext				: '',
+			count			: null,
+			names			: []
+		},
+		//	\\//	Sprite images
+
+		{
+			name			: 'imgBgScenario',
+			mode			: '',	//	'single',
+										//	'template',  like load3DImgPath/load3DImgBase.load3DImgExt
+										//	'names',
+			path			: '../../../../img/nebulae/bgImg.jpg',
+			template		: '',
+			ext				: '',
+			count			: null,
+			names			: []
+		}
+
+		// ''
+
+
+	//	//\\ Example. Sets load parameters; .mode is a flag ( see .mode-comments below );
+	/*
+	,
+	{
+
+		name				: 'customExample',
+		mode				: 'single',
+											//	'single',	- to load only one image;
+											//	'template',  like load3DImgPath/load3DImgBase.load3DImgExt;
+											//	'names';
+											//	!!mode		disables load;
+		path				: 'img/ctn/content-sprites.jpg',
+											//	path relative to landing page;
+											//	in mode 'single', must be path terminated on given image;
+											//	in other modes, must be a path to image's parent;
+		template			: '',			//	in contrary to setting image names implicitly, sets a file-name-template;
+											//	used only in template mode;
+		ext					: '',			//	file-name last extension; used only in template mode;
+
+		count				: null,			//	explicitly sets number of images to load;
+											//	If mode === 'single', then is ignored;
+											//	If null, then names.length is used;
+
+		names				: [ ],			//	sets image-names explicitly;
+											//	used only in mode 'names';
+
+		postLoadAnimationDuration : null,	// ms, fires up animation which is preset in "run-onload";
+
+		allLoadedDewarning	: null,			// !!allLoadedDewarning means hiding loading-warning-message at landing after
+											// all images in this group are loaded
+		declipify			:				// declipify will run declipifyer
+		{
+			///	Declipifies images with pattern in css-id;
+			//	TODM must set up pattern here to make code generic;
+			templified :
+			[	
+				{
+					main : [ 8, 12, 412, 220 ],
+					children :
+					[
+						[ 8, 669, 284, 835 ],
+						[ 297, 670, 570, 834 ],
+						[ 581, 672, 838, 826 ]
+					]
+				},
+
+				{
+					main : [ 422, 10, 827, 222 ],
+					children :
+					[
+						[ 8, 841, 284, 1009 ],
+						[ 292, 842, 569, 1009 ],
+						[ 575, 842, 847, 1010 ]
+					]
+				},
+
+				{
+					main : [ 6, 235, 410, 442 ],
+					children :
+					[
+						[ 8, 669, 284, 835 ],
+						[ 297, 670, 570, 834 ],
+						[ 581, 672, 838, 826 ]
+					]
+				},
+
+				{
+					main : [ 422, 234, 824, 442 ],
+					children :
+					[
+						[ 8, 841, 284, 1009 ],
+						[ 292, 842, 569, 1009 ],
+						[ 575, 842, 847, 1010 ]
+					]
+				},
+
+				{
+					main : [ 7, 452, 408, 660 ],
+					children :
+					[
+						[ 8, 669, 284, 835 ],
+						[ 297, 670, 570, 834 ],
+						[ 581, 672, 838, 826 ]
+					]
+				},
+
+				{
+					main : [ 420, 453, 824, 660 ],
+					children :
+					[
+						[ 8, 841, 284, 1009 ],
+						[ 292, 842, 569, 1009 ],
+						[ 575, 842, 847, 1010 ]
+					]
+				}
+			],
+
+			///	Declipifies filler
+			named :
+			{	
+				"expoF-left-img-btb"			: [ 8, 12, 412, 220 ],
+				"expoF-0-right-sub-img-btb"		: [ 8, 669, 284, 835 ],
+				"expoF-1-right-sub-img-btb"		: [ 297, 670, 570, 834 ],
+				"expoF-2-right-sub-img-btb"		: [ 8, 669, 284, 835 ]
+			}
+		} // declipify
+	}, // customExample
+
+
+
+	///	Example. Fist-viewed images collection at landing
+	{
+		mode				: 'basic_images_to_load',
+		path				: 'img/basic-sprites-transp.png',
+		template			: '',
+		ext					: '',
+		count				: null,
+		names				: [ ],
+		allLoadedDewarning	: true,
+		postLoadAnimationDuration : 5000,
+		declipify			:
+		{
+			named :
+			{	
+				"logo-btb"							: [ 458, 1, 706, 80 ],
+				"banner-img-btb"					: [ 15, 116, 412, 483 ],
+				"banner-button-img-id-btb"			: [ 7, 5, 208, 70 ],
+				"banner-button-hover-img-id-btb"	: [ 212, 4, 414, 70 ],
+				"under-banner-filler-img-btb"		: [ 15, 116, 415, 196 ]
+			}
+		}
+	} //	basic_images_to_load
+	//	\\// Example. Sets load parameters; .mode is a flag ( see .mode-comments below );
+	*/
+
+	],
+	//	\\//	Load-images-config
+
+
+
+
+
+		dummyNoCommaAfter		: 2
+
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+}) ();
+
+

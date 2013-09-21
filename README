@@ -2,151 +2,118 @@
 SPACEseEN is a JavaScript experimental library to animate 2D or 3D scene on canvases.
 
 
-This README is for version: July 16, 2013. Version 0.0.65.
-This documentation is possibly outdated or incomplete.
+This README is for version: September 21, 2013. Version 0.0.82.
 
 
-spaceen/js/graph        is a core library
-spaceen/js/f i l e s    run-time managers and utitilites
-spaceen/js/btb          general purpose JS utilities
-spaceen/deployer        minifier and deployer
-spaceen/php_templater   helps to assembly html and js files into response-page
-spaceen/scenarios       data and data generating files. actual art.
-
-There is no database end on server side, php-files are just a convenient tool to retemplate pages.
-Land browser on .../index.htm, .../index.prod.htm, for production mode.
-
-In development mode, examples should be landed on files localhost/..../index.php which requires server
-like Apache but only to produce simple combination of html-js files.
-The project is essentially pure JavaScript.
-
-Download: git clone git@github.com:lancelab/spaceen.git
-or download as a zip file.
+This project is client-JavaScript oriented.
+PHP files are used only for development and deployment ( except debugging and capturing ).
 
 
+F r a m e w o r k    s t r u c t u r e	 a t   a   g l a n c e
 
+	There are two main parts: common and scenarios.
+	Common is a kernel of framework and MIT licensed.
+	Scenarios is a custom part and looks like:
 
-C u s t o m   s u b a p p l i c a t i o n s    d e v e l o p m e n t
+		Scenarios
+			Album1
+				Subapp1
+				Subapp2
+				...
+			Album2
+				SubappX
+			...
 
-Folder "scenarios" contains scenario-albums and templates.
-Scenario-album contains scenarios and templates.
+	Subapps can have any license.
+	The method of extending subapps is a folder-copy-paste.
+	One can copy paste existing subapps and albums and modify them. Or, create own subapps.
 
-Custome subapplications are called "players" and located under "albums" like:
-scenarios/my-album/my-player
+	Some subapps are already bundled with github package.
+	They are white-listed in .gitignore.
 
-By design, new projects can be added to spaceen by copy-pasting
-your own folders below "scenarios" folder. Use analogy.
-
-Make your album like scenarios/my-album
-Make your project "my-player" like scenarios/my-album/my-player
-
-
- Create index.php in the my-player:
-
-    Legend:
-
-		$templates is located one folder-level higher than my-player
-    	$album_templates is located two folder-levels higher than my-player
-
-
- Landing page is structured:
-
-	top.php				- !DOCTYPE html and document.header beginning
-		css-links in increasing priority:
-
-			$scenarios_css
-			$album_css
-			$player_css
-			$warnings_css
-
-	jslinks.dev.php		- script tags.  (This file APPARENTLY MUST BE in scenarios/album/common.tpl folder. )
 	
-	body begins
-		subtop.warnings.php
-		body.php
-		content.php
-	footer.php			
 
+L a n d i n g
 
-Templates must have extension .tpl or .cont:
-.tpl stands for scripts templates, .cont for content common for few scenarios.
+	scenarios/AlbumX/SubappY/		-	lands to subapp in dev. mode
+	prod/AlbumX/SubappY/			-	lands to subapp in prod. mode
 
-The scenario intro/landing is special. 
+	The scenarios/intro/landing is a special subapp, it lists landing links to subapps bundled with github package:
 
-	landing/index.php,				is a a primary landing page,
-	landing/index.php?s_dev			is a development workarea in dev mode
-	landing/index.php?s_dev=list	dev mode and without animation on landing page
-			parameter s_dev uses file body.dev.php,
-			omitting this parameter, triggers use of body.php file.
-			body.php and body.dev.php difference is in using ...&s_dev... in links of their texts.
-			.../landing/body.php is not coded manually but generated from .../landing/body.dev.php.
+		scenarios/intro/landing/		-	lands to list in dev. mode
+		scenarios/intro/landing/?s_list	-	usually disables JavaScript 
+		scenarios/prod/landing/			-	lands to list in prod. mode
 
-
-R u n n i n g   p l a y e r
-
- JavaScript configuration data: in order of increasing priority:
-
-	js/generic_conf.js
-	my-player/js/conf.js
-	my-player/js/flyer.js
-	my-player/js/dsprite.js
-
-	( Above configuration files are concatenated into app.js )
-
-	my-player/js/capture.js  or captured-xxxx.js - this line amends all preceding configs.
-
-	URL-query data
+	In development mode, landing requires server. Apache on Linux is sufficient.
 
 
 
-C a p t u r i n g    a n d    r e p l a y i n g    c a s t s
+D o w n l o a d
 
-Subproject "flyer" generates random parameters for sprites. This makes animation dependable on chance, browser, and
-possibly different every time the page is landed.
+	git clone git@github.com:lancelab/spaceen.git
+	or download as a zip file.
 
-To capture parameters at specific landing, use Ctrl-e keys.
-This will output captured object directly to the screen. Copy-paste it into
-file capture.js in app web root or capturedXXXXXX.js.
 
-If capturedXXXXXX.js is to be used, then URL query must contain
- ...&captured=XXXXXX... or
- ...&s_captured=XXXXXX...
 
-(s_ is for server side inclusion)
+F r a m e w o r k    c o m m o n    f i l e s
 
-which will force browser to pick up parameters stored in file capturedXXXXXX.js.
+	spaceen/js/				JavaScript library
+	spaceen/php_templater/  assembles html-response in development mode
+	spaceen/dev/			development and debugging utilities 
+	spaceen/dep/			deployer utilities
+	spaceen/captuered/		loggin folder for debuggin in production or development mode
+	spaceen/prod/			production version of scenarios/. Has no server-script. Standalone if dev/ and captured/ are not used.
 
-If no URL "capturedXXXXXX" is provided, but captured.js does exist in my-player/js, then capture.js is picked up automatically.
-In both cases, "capturedXXXXXX.js" or "capture.js", animation is reproduced exactly the same way as it was captured, but
-different browsers may still have some nuances.
 
-Permissions:
 
- General permissions:
- find .  -type d  -exec chmod -R 775  \{\} \;
+S u b a p p    C o n f i g u r a t i o n
 
- to save captured images: ( bad for production? )
- find .  -type d -name img  -exec chmod -R 777  \{\} \;
+	spaceen/js/core/conf.js					-	default configuration
+	scenarios/albumX/subappY/js/*			-	overrides default
+	scenarios/albumX/subappY/index.php		-	configures assembly of html-request from templates and contents
 
- to avoid annoying question in Ubuntu "read or execute":
- find .  -type f -name \*.js  -exec chmod -R 664  \{\} \;
+	templates:
 
- more help: http://unix.stackexchange.com/questions/21251/why-do-directories-need-the-executable-x-permission-to-be-opened
+		scenarios/common.tpl/*
+		scenarios/AlbumX/common.tpl/*
+
+	URL-query-string has maximum priority in overriding configurations
+
+
 
 
 D e p l o y m e n t
 
-After development is done, run
+	Requeres local server and php. Currently works with Apache, Linux, php 5.3.
 
-	deployer/finalize_package.sh
-	It requires Ruby.
-
-    It creates app.js, slightly "minified" version of engine bundled with "player".
-	See comments in .../deployer files.
-
+	deployer/toprod.sh			-	generates folder "prod"
+	deployer/toremote.sh		-	generates folder "prod" and deploys it to remote host
+	deployer/zipify.sh			-	zips up principal parts of framework
+	deployer/gitify.sh			-	prepares .git for github deployment
 
 
-W e l c o m e  t o   s n
+
+C a p t u r i n g    d e b u g - l o g s    a n d    c a s t s
+
+	
+	Ctrl + G	saves graph.conf to disk
+	Ctrl + g	shows graph.conf on screen
+	Ctrl + e	captures canvas picture and saves if to disk
+
+	Saves to spaceen/captured. If the server security permits, set "chmod 733 captured".
+
+
+
+R e p l a y i n g    c a s t s	( This feature is suspended )
+
+
+	Some subapps generate random animations.
+	However, when their effectice conf.js is captured to a file, 
+	animation can be replayed without randomization.
+
+
+
+W e l c o m e    t o    S p a c e e n
 
 
 

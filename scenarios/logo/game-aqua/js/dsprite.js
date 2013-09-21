@@ -105,7 +105,7 @@
 
 
 	///	Helper. Part of painter.
-	var preTwin = function ( ctx, strokeStyle, fillStyle, scale, facet, itemIx )
+	var preTwin = function ( ctx, scale, facet, itemIx )
 	{
 		var fscale		= sceneScale * scale;
 		//var rfscale		= 1 / fscale;
@@ -191,7 +191,7 @@
 
 	/// "Universal" shape function.
 	var shape_function = primaryDConf.shape_function = function(
-							ctx, strokeStyle, fillStyle, scale, arg,
+							ctx, scale, arg,
 							startColorR, startColorG, startColorB, startColorA,
 							endColorR, endColorG, endColorB, endColorA,
 							itemIx
@@ -203,7 +203,7 @@
 		var facet		= graph.mstones.iterationExitPassed;
 		//var facet		= graph.mstones.iterationExitEntered;
 
-		preTwin( ctx, strokeStyle, fillStyle, scale, facet, itemIx );
+		preTwin( ctx, scale, facet, itemIx );
 
 		if( facet )
 		{

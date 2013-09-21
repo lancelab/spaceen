@@ -1,5 +1,14 @@
 <?php 	
 
+
+
+	ini_set( 'display_errors', '1' );
+	error_reporting( E_ALL );
+
+
+	$my_parent	= rtrim( dirname(__FILE__), '\/' );
+
+
 	///	Overrides global variable "name" from query.
 	//	Makes sure it is $default if no initial value exist and no query.
 	function sspp( $name, $prefix='', $postfix='', $default=FALSE )
@@ -25,12 +34,12 @@
 	//	$jslinks and optionally for $warnings_and_bottom_dir
 	//.	Cannot change this because minifier is bound to this
 	//	TODM put to docs:
-	define( TEMPLATES, 'common.tpl' );
+	define( 'TEMPLATES', 'common.tpl' );
 
 
 	
 	// //\\	Spawns configuration
-	$env = array_key_exists( 's_dev', $_GET ) ? 'dev'	: 'prod';
+	//$env = array_key_exists( 's_dev', $_GET ) ? 'dev'	: 'prod';
 
 	sscss(	 'scenarios_css',	'../../common.tpl/css/',	'.css'										);
 	sscss(	 'album_css',		'../common.tpl/css/',		'.css'										);
@@ -56,8 +65,9 @@
 	$warnings_and_bottom_dir	=	!empty( $scenarios_templates ) ? '../../common.tpl' : '../' . TEMPLATES;
 
 
-	if( !isset( $canvas_background_img ) ) $canvas_background_img	=  '';
-	if( !isset( $canvas_foreground_img ) ) $canvas_foreground_img	=  '';
+	if( !isset( $canvas_background_img ) )	$canvas_background_img	=  '';
+	if( !isset( $canvas_foreground_img ) )	$canvas_foreground_img	=  '';
+	if( !isset( $content_folder ) )			$content_folder	=  '.';
 	// \\//	Spawns configuration
 
 
@@ -76,16 +86,66 @@
 	if( $album_css )		echo "\t\t<link rel=\"stylesheet\"		href=\"" . $album_css		. "\">\n";
 	if( $player_css )		echo "\t\t<link rel=\"stylesheet\"		href=\"" . $player_css		. "\">\n";
 
-	$jslinks				=	$env === 'dev' ? '../' . TEMPLATES . '/jslinks.dev.php' : 'jslinks.prod.php';
-	require_once(			$jslinks										);	//	Apparently, in respect to leaf-php caller
+
+
+
+	//	//\\	Gets core js-links	/////////////////
+
+	require( $my_parent . '/btb/get-files-by-regex.php' );
+
+	$w_prefix		= "\t\t<script type=\"text/javascript\" src=\"../../../js/";
+	$w_postfix		= "\"></script>\n";
+	$w_regex		= '/\.js$/';
+
+	$gf = new btb\get_files_by_regex();
+	$w_entry		= $my_parent . '/../js/';
+	$w_sub			= '3rd';
+	$gf->run( $w_entry . $w_sub,	$w_regex, $w_prefix . $w_sub . '/', $w_postfix ); 
+	$w_sub			= 'btb';
+	$gf->run( $w_entry . $w_sub,	$w_regex, $w_prefix . $w_sub . '/', $w_postfix ); 
+	$w_sub			= 'core';
+	$gf->run( $w_entry . $w_sub,	$w_regex, $w_prefix . $w_sub . '/', $w_postfix ); 
+
+	$w_sub			= 'tester';
+	$gf->run( $w_entry . $w_sub,	$w_regex, $w_prefix . $w_sub . '/', $w_postfix ); 
+
+	//	\\//	Gets core js-links	/////////////////
+
+	$addon_prefix	= "\t\t<script src=\"../../../js/addon/";
+	$addon_postfix	= "\"></script>\n";
+	if( isset( $addon_jslinks ) )
+	{
+		foreach( $addon_jslinks as $link => $ww )
+		{
+			echo $addon_prefix . $link . $addon_postfix;
+		}
+	}
+
+	$w_prefix		= "\t\t<script type=\"text/javascript\" src=\"js/";
+	$w_postfix		= "\"></script>\n";
+	$w_regex		= '/\.js$/';
+	$w_entry		= './js';
+	$gf->run( $w_entry,	$w_regex, $w_prefix, $w_postfix ); 
+
+	$ww						= 'js/scenario.js';
+	if( !file_exists( './' . $ww ) )
+	{
+		$ww					= '../common.tpl/js/scenario.js';
+		if( !file_exists( $ww ) )
+		{
+			$ww				= '../../common.tpl/js/scenario.js';
+			if( !file_exists( $ww ) ) $ww = '';
+		}
+	}
+	if( $ww ) echo			"\t\t<script src=\"$ww\"></script>\n";
 
 
 	///	Takes captured data
 	if( strlen( $captured ) > 0 )
 	{
-		echo "\t\t<script src=\"js/captured" . $captured . ".js\"></script>";
-	}else if( file_exists ( './js/captured.js' ) ) {
-		echo "\t\t<script src=\"js/captured.js\"></script>";
+		echo "\t\t<script src=\"captured.js/captured" . $captured . ".js\"></script>";
+	}else if( file_exists ( './captured.js/captured.js' ) ) {
+		echo "\t\t<script src=\"captured.js/captured.js\"></script>";
 	}
 	echo "\n\n\t</head>\n";
 

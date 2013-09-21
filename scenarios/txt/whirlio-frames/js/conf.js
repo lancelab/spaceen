@@ -101,8 +101,7 @@
 
 		movingObserver				: true,
 		bodyRadiusMax				: 20,		//	100
-		reset_population_at_reset	: false,
-		generate_backg_img			: false,
+		reset_population_at_reset	: false
 
 	}; // conf
 

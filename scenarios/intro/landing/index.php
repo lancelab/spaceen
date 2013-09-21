@@ -6,7 +6,7 @@
 	// i ni_set( 'display_errors' , '1' );
 
 
-	$env_token				=	array_key_exists( 's_dev', $_GET ) ? 'dev' : '';
+	$static_list			=	array_key_exists( 's_list', $_GET ) ? 'list' : '';
 
 	$content_folder			=	'../landing.cont';
 
@@ -19,12 +19,11 @@
 	$content_canv_attached	=	false;
 
 	$body					=	'body';
-	$body					.=	$env_token ? '.' . $env_token : '';
 	$content				=	$content_folder . '/' . $body . '.php';
 
 
 	/// Downfalls to development list and exits
-	if( $env_token && $_GET[ 's_dev' ] === 'list' )
+	if( $static_list === 'list' )
 	{
 		require_once(		$content_folder . '/top.php'										);
 		echo				"\t\t<link rel=\"stylesheet\"		href=\"../../common.tpl/css/" . $scenarios_css ."\">\n"	;

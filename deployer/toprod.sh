@@ -7,6 +7,6 @@
 ################################################################
 
 ruby minifier.rb
-#extra-step for intro-app:
-ruby minifier-steps-page.rb body
+
+cp -f ../js/core/VERSION.js ../
 

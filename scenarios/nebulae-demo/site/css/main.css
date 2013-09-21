@@ -1,0 +1,163 @@
+	html
+	{
+		width	: 100%;
+		height	: 100%;
+		margin	: 0px;
+		padding	: 0px;
+	}
+
+
+	/* ************************************************************** */
+	/*    Apparently some "single page-hosting" environments do break */
+	/*    <hN> tag. Like cloudpage.co. Here is a fix:                 */
+	/* ************************************************************** */
+	h1,h2,h3,h4,h5,h6
+	{
+		font-family : arial, helvetica;
+		font-weight : bold;
+	}
+
+
+	/* ************************************************************** */
+	/*    generic                                                     */     
+	/* ************************************************************** */
+	body
+	{
+		margin				: 0px;
+		border				: 0px;
+		padding				: 0px;
+		overflow-x			: hidden;
+
+		font-family			: Helvetica, Arial, sans-serif;
+
+		background-color	: #0A0A10;
+		color				: #FFFFFF;
+	}
+
+
+
+	a			
+	{	
+		color : #AAAAFF;
+		font-weight : bold;
+		text-decoration : none; 
+		border : none; 
+	}
+
+	a:visited
+	{	
+		color: #AACCFF;
+	}
+
+	a.selected
+	{
+		color: #EEEECC;
+	}
+
+	a:hover		
+	{ 
+		color : #EEEEFF;
+		background-color : transparent;
+	}
+
+
+	#logo-btb
+	{
+		position	: absolute;
+		width		: 10%;
+		left		: 10%;
+		top			: 10%;
+	}
+
+
+	#scrollee
+	{
+		position				: absolute;
+		width					: 70%;
+		height					: 75%;
+		top						: 10%;
+		left					: 25%;
+
+		/*
+		border					: 2px ridge #999999;
+		-webkit-border-radius	: 20px;
+		-moz-border-radius		: 20px;
+		border-radius			: 20px;
+		background-image		: url( '../img/half-transparent.png' );
+		*/
+		overflow				: hidden;
+
+	}
+
+	#padder
+	{
+		position				: absolute;
+		width					: 120%;
+		height					: 100%;
+		top						: 0%;
+		left					: 0%;
+		overflow				: auto;
+	}
+
+	.section
+	{
+		width : 70%;
+		font-size : 14px;
+		color:#FFFFFF;
+	}
+
+	ul
+	{
+		list-style-type : none;
+	}
+
+
+	#canvas_wrap	
+	{
+		position : absolute;
+
+		width : 100%;
+		height : 100%;
+		top : 0px;
+		left : 0px;
+		z-index : -1;
+		overflow : hidden;
+	}
+
+	#canvasBgIm
+	{
+		position : absolute;
+		top : 0px;
+		left : 0px;
+		width : 100%;
+		height : 100%;
+	}
+
+	#canvas
+	{
+		position : relative;
+		left : 0px;
+		top : 0px;
+		background-color : transparent;
+	}
+
+
+
+
+	/*	Content-related styles */
+	ui.small-font, li.small-font
+	{
+		font-size : 10px;
+	}
+
+	ul.circle
+	{
+		list-style-type : circle;
+	}
+
+	.attention
+	{
+		color : #FFFFBE;
+	}
+
+

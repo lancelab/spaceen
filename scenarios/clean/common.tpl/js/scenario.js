@@ -113,8 +113,6 @@
 		//:	TODM Messy. Too many calls.
 		$(window).resize(	throttledDigest );
 		$(window).resize(	throttledCanvas );
-		//$(document).scroll(	throttledDigest );
-		//$(document).scroll(	repositionCanvasNavigation );
 		digestPositions();
 		repositionCanvasNavigation();
 

@@ -29,43 +29,99 @@
 	verbose					= false
 
 
+	scenarios_folder				=	File.expand_path('../../scenarios', __FILE__)
+	scenarios_prod_folder			=	File.expand_path('../../prod', __FILE__)
+
+
+	@minif_eng_folder_from_landing		=	'js'
+	@minified_engine_from_landing		=	@minif_eng_folder_from_landing + '/app.js'
+	@jquery_name_re						=	/\/jquery\.js$|\/jquery\.min\.js$/	# Skips jquery...js from cleanup
+	@dont_bunlde_jq						=	true;								# this single line controls splitting/bundling jq/app
+	@move_into_subapp_jq				=	true;
+	@jQuery_final_name					=	'jquery.js'
+
+	########################################################################################################################
+	# makes raw prod-folder and cleans it up
+	########################################################################################################################
+	if !system( 'rm -rf ' + scenarios_prod_folder ) 
+		msg = $?.to_s
+   		raise msg
+	end
+
+	if !system( 'cp -fr ' + scenarios_folder + ' ' + scenarios_prod_folder ) 
+		msg = $?.to_s
+   		raise msg
+	end
+
+	#fails: wCommand = 'find ' + scenarios_prod_folder + ' -name \*.php -o -name \*.js -exec rm \{\} \;' #TODM make
+	#if !system( wCommand ) 
+	#	msg = $?.to_s
+   	#	raise msg
+	#end
+
+	wCommand = 'find ' + scenarios_prod_folder + ' -type f -name \*.js -exec rm \{\} \;'
+	if !system( wCommand )
+		msg = $?.to_s
+   		raise msg
+	end
+
+	wCommand = 'find ' + scenarios_prod_folder + '  -type f -name \*.php -exec rm \{\} \;'
+	if !system( wCommand ) 
+		msg = $?.to_s
+   		raise msg
+	end
 
 
 
 
 
 
-  def deploy_project( album, 	landing_folder_base,  minifyee_html_base )
-
-
-	#::	Settings
-	minified_engine_from_landing	=	'js/app.js'
-	jquery_name_re					=	/\/jquery\.js$|\/jquery\.min\.js$/	# Skips jquery...js from cleanup
-	dont_bunlde_jq					=	true;								# this single line controls splitting/bundling jq/app
-	templates						=	'common.tpl'
 
 
 
 
-	#	//\\	Spawns settings
+
+
+
+
+  ########################################################################################################################
+  #	deploy_project
+  ########################################################################################################################
+
+  def deploy_project( album, landing_folder_base, scenarios_prod_folder )
+
+
+
 	landing_folder_base				=	album + '/' + landing_folder_base
-	minifyee_html					=	File.expand_path('../../scenarios/' + album + '/' +
-										templates + '/' + minifyee_html_base + '.dev.php',__FILE__)
-	#. landing page directory
 	landing_folder					=	File.expand_path('../../scenarios/' + landing_folder_base, __FILE__)
 	landing_folder_sl				=	landing_folder + '/'
-	puts								"\nApplication " + landing_folder_base + " began.\n... Landing_folder " + landing_folder
-
-	minified_html					=	landing_folder_sl + minifyee_html_base + '.prod.php'
-	minified_engine					=	landing_folder_sl + minified_engine_from_landing
+	puts								"\n" + landing_folder_base + " deployment began.\n... Landing_folder=" + landing_folder
+	landing_prod_folder				=	scenarios_prod_folder + '/' + landing_folder_base
 
 
-	minified_index_to_run			=	( landing_folder_sl + 'index.php' ).gsub( /^\/var\/www/, 'http://localhost' )
-	assembled_minified_file_name	=	landing_folder_sl + 'index.php.htm'
+	########################################################################################################################
+	#	Gets single-file response from server and writes it to disk creating source for minifying
+	########################################################################################################################
 
-	#	\\//	Spawns settings
+	#.	we amend this statement because index.htm can be also a target:
+	#	curl_target_file				=	( landing_folder_sl + 'index.php' ).gsub( /^\/var\/www/, 'http://localhost' )
+
+	curl_target_file				=	( landing_folder_sl ).gsub( /^\/var\/www/, 'http://localhost' )
+	assembled_html_file				=	landing_folder_sl + 'index.php.htm'
+
+	command_to_run					=	'php curlify.php ' + curl_target_file + ' ' + assembled_html_file
+	puts '... running: ' + command_to_run
+		
+	if !system( command_to_run ) 
+		msg = $?.to_s
+   		raise msg
+	end
 
 
+
+	minifyee_html					=	assembled_html_file;
+	minified_html					=	landing_prod_folder + '/index.htm'
+	minified_engine					=	landing_prod_folder + '/' + @minified_engine_from_landing
 
 
 
@@ -134,9 +190,9 @@
 			if ( ( m and i == 1 ) or s == '' ) and state == 'parsing'
 
 				state = 'end' 
-				product +=	'<script type="text/javascript" src="' + minified_engine_from_landing +
+				product +=	'<script type="text/javascript" src="' + @minified_engine_from_landing +
 							'"></script>' + "\n"
-				#	p uts 'inside text-scanner loop: src=' + minified_engine_from_landing
+				#	p uts 'inside text-scanner loop: src=' + @minified_engine_from_landing
 				product += t + s
 
 			elsif state == 'parsing' and m and m[1]
@@ -153,13 +209,26 @@
 					text = f.read
 			
 					###	Skips jquery....js
-					if m[1] =~ jquery_name_re
+					if m[1] =~ @jquery_name_re
 
 			 			puts "*** jq skipped: #{m[1]}"
-						if dont_bunlde_jq
+						if @dont_bunlde_jq or @move_into_subapp_jq
 
-							product +=	'<script type="text/javascript" src="' + m[1] +
-										'"></script>' + "\n\t\t"
+							if @move_into_subapp_jq
+
+								wJQuery	= landing_prod_folder + '/' + @minif_eng_folder_from_landing + '/' + @jQuery_final_name
+								puts '... jQuery ... ' + wJQuery
+							    File.open( wJQuery, 'w' ){ |f| f.write( text ) }
+								product +=	'<script type="text/javascript" src="' + @minif_eng_folder_from_landing + '/' + @jQuery_final_name +
+											'"></script>' + "\n\t\t"
+
+							elsif
+
+								product +=	'<script type="text/javascript" src="' + m[1] +
+											'"></script>' + "\n\t\t"
+
+							end
+
 						else
 
 							product_scripts += text + "\n"
@@ -189,16 +258,15 @@
 
 		puts '... minified_html=' + minified_html
 		puts '... minified_engine=' + minified_engine 
-		#puts 'product=' + product
+		# puts '... product=' + product.slice(0, 10) + '...'
 	    File.open( minified_html, 'w' ){ |f| f.write( product ) }
 	    File.open( minified_engine, 'w' ){ |f| f.write( product_scripts ) }
 
-		command_to_run = 'php curlify.php ' + minified_index_to_run + ' ' + assembled_minified_file_name
-		# puts 'running: ' + command_to_run
-		
-		if !system( command_to_run ) 
+		wCommand = 'rm ' + minifyee_html
+		# puts '... removing=' + minifyee_html
+		if !system( wCommand ) 
 			msg = $?.to_s
-    		raise msg
+	   		raise msg
 		end
 
   end
@@ -231,8 +299,8 @@
 			elsif album.index(forbidden_extensions)
 		 		puts ( rel + " ... skipped\n" ) if verbose
 			elsif depth == 1
-				#deploy_project  album, 	landing_folder_base,  minifyee_html_base
-				deploy_project(  album, 	name,			 	 'jslinks' )
+				#deploy_project  album, 	landing_folder_base,  landing_file_base
+				deploy_project(  album,	name, scenarios_prod_folder )
 			end
 
 		end
