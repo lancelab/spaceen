@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 #  //\\// Builds and deploys prod version to folder $ALPHA in remote host
 

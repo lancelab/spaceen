@@ -34,21 +34,31 @@
 
 
 
-	///	Spawns configuration data
+
+
+	///	Spawns configuration data: TODM mostly bad: hides from developer meaning of config;
 	//	Must be run before using conf.
 	graph.spawn_config = function ( conf )
 	{
-			if( !conf.timeScale ) conf.timeScale = 1;
-			if( !conf.frozenTicksStart && conf.frozenTicksStart !== 0 ) conf.frozenTicksStart = conf.ticksPeriod;
-			conf.tickTimeStep = conf.ticksPeriod > 0 ? conf.playPeriod / conf.ticksPeriod : 1000;
-			//.	Effective only if setTimeout used for animation or if !!timeFromTicks
-			conf.animationInterval = Math.max( Math.floor( conf.tickTimeStep ), 20 );
-
-			conf.ticksPerMsec = conf.ticksPeriod / conf.playPeriod;
-
-			if( !conf.turnPonitPause ) conf.turnPonitPause = 0;
-
+			if( conf.swingTicks )			conf.ticksPeriod = conf.swingTicks * 2;	// TODM bad design
+			if( !conf.timeScale )			conf.timeScale = 1;
+			if( !conf.frozenTicksStart &&
+				conf.frozenTicksStart
+				!== 0
+			){								conf.frozenTicksStart = conf.ticksPeriod;	}
+			conf.tickTimeStep				= conf.ticksPeriod && conf.playPeriod ? 
+											conf.playPeriod / conf.ticksPeriod : 1000;
+			//.	Effective only if 
+			//	setTimeout used for
+			//	animation or if
+			//	!!timeFromTicks
+			conf.animationInterval			= Math.max( Math.floor( conf.tickTimeStep ), 20 );
+			conf.ticksPerMsec				= conf.ticksPeriod && conf.playPeriod ?
+											conf.ticksPeriod / conf.playPeriod : 0.05;
+			if( !conf.turnPonitPause )		conf.turnPonitPause = 0;
 	}	
+
+
 
 
 	///	Puts simple text message on canvas
@@ -59,8 +69,11 @@
 		var hh			= cc.height;
 		var len			= text.length;
 		if( !len )		return;
-		var fontSize	= Math.ceil( vwidth / len * scale * 0.5 ) + 2;
-		var offsetX		= center_xx - 0.25 * fontSize * len;
+		// var fontSize	= Math.ceil( vwidth / len * scale * 0.5 ) + 2;
+		var fontSize	= Math.ceil( ww / len * scale * 1.6 ) + 2;
+		// var offsetX		= center_xx - 0.25 * fontSize * len;
+		var offsetX		= center_xx - 0.2 * fontSize * len;
+
 		var offsetY		= center_yy - fontSize;
 
 		// c ccc( center_xx + ', ' + center_yy + ' fontSize=' + fontSize);
@@ -68,7 +81,10 @@
 		ctx.font = fontSize + 'px Arial';
 
 		ctx.lineWidth = 1.0;
-		ctx.fillStyle = 'rgba( 125, 125, 125, 0.2 )';
+		ctx.fillStyle = 'rgba( 125, 125, 125, 0.5 )';
+
+		// c ccc( ww + ' ' + offsetX + ' ' + offsetY + ' ' + fontSize + ' ' + scale + ' ' + text );
+
 		ctx.fillText( text, offsetX, offsetY );
 	};
 
@@ -184,8 +200,11 @@
 
 
 	///	Animation frame draw helper
-	//	Apparently draws from twin or single buffers.
-	//	Usage case: if( conf.virt === 'b' || ... 't' )
+	//	Draws draws from twin or single buffers only if they exist.
+	//	Independently may draw:
+	//		drawPauseImage and
+	//		virt.bgCns if drawBeforeSprites && virt.bgReady
+	//
 	graph.drawScaledStubsToMaster = function ( inPausePhase, master_screen_scale, turnEnterPassed, ownTicks, drawBeforeSprites )
 	{
 			var vcanvas			= virt.canvas;
@@ -295,7 +314,7 @@
 	///	Does this one-time: removes "loading ... " warning
 	graph.removeLoadingMsg = function ()
 	{
-		var ww = document.getElementById( 'loading-wrap' );
+		var ww = document.getElementById( 'loading-wrap-btb' );
 		if( ww ) ww.style.display = 'none';
 		ifdeb( '"loading ... " warning is removed ' );
 	};

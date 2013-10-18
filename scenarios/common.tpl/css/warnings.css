@@ -3,7 +3,7 @@
 	/* Landing messages and canvas wrapper contents                                               */
 	/*********************************************************************/
 
-	#loading_wrapper
+	#loading_wrapper-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -13,7 +13,7 @@
 		z-index				: -3;
 	}
 
-	#loading
+	#loading-btb
 	{
 		margin				: auto;
 		height				: 300px;		/* TODM works well? */
@@ -26,7 +26,7 @@
 		z-index				: -4;
 	}
 
-	#canvas_warning
+	#canvas_warning-btb
 	{
 		position			: absolute;
 		top					: 20px;
@@ -43,13 +43,13 @@
 	}
 
 
-	#canvas_warning_subdiv
+	#canvas_warning_subdiv-btb
 	{
 		margin				: auto;
 		width				: 400px;
 	}
 
-	#java-script-disabled
+	#java-script-disabled-btb
 	{
 		position			: absolute;
 		top					: 20px;
@@ -60,7 +60,7 @@
 		z-index				: -2;
 	}
 
-	#js-disabled-subdiv
+	#js-disabled-subdiv-btb
 	{
 		position			: absolute;
 		left				: 250px;
@@ -71,13 +71,13 @@
 	}
 
 
-	#canvas
+	#canvas-btb
 	{
 		display				: none;
 	}
 
 
-	#canvasBgIm
+	#canvasBgIm-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -86,7 +86,7 @@
 	}
 
 
-	#canvasBgIm2
+	#canvasBgIm2-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -94,7 +94,7 @@
 		top					: 0px;
 	}
 
-	#canvasFgIm
+	#canvasFgIm-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -105,27 +105,27 @@
 
 
 
-	#canvasBgIm
+	#canvasBgIm-btb
 	{
 		z-index				: 1;
 	}
 
-	#canvasBgIm2
+	#canvasBgIm2-btb
 	{
 		z-index				: 2;
 	}
 
-	#canvas
+	#canvas-btb
 	{
 		z-index				: 3;
 	}
 
-	#canvasFgIm
+	#canvasFgIm-btb
 	{
 		z-index				: 4;
 	}
 
-	#content
+	#content-btb
 	{
 		z-index				: 5;
 	}
@@ -134,15 +134,15 @@
 
 
 
-	#canvas,
-	#canvasBgIm2
+	#canvas-btb,
+	#canvasBgIm2-btb
 	{
 		display				: none;
 	}
 
 
-	#canvasBgIm,
-	#canvasFgIm
+	#canvasBgIm-btb,
+	#canvasFgIm-btb
 	{
 		display				: block;
 		visibility			: visible;

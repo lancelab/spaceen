@@ -18,8 +18,8 @@
 			gaVERSION	: '2012',	// default; reset by hostname; ga2012 uses qa.js; ga2013 uses analytics.js
 
 			//. If one of these tokens is met in location.pathname, then
-			//	google is disabled in entire application
-			forbidden_subpaths			: [ "/a1/", "metap/apps/", "/feat", "/bil" ],
+			//	google is disabled in subapp
+			forbidden_subpaths			: [ "/animated-j", "/anim-g", "/nebulae-c", "/sense" ],
 
 			//.	Sets hosts forbidden for google suite
 			forbidden_host_names	: [ 'localhost' ],

@@ -2,8 +2,8 @@
     	<script type="text/javascript">
 			( function () {
 				document.write( "\t\t<style type=\"text/css\">" +
-					"#java-script-disabled, #scrollee, #menu, #canvas_wrap, #content { display:none; } " +
-					"#loading_wrapper{ display:block; }</style>\n"
+					"#java-script-disabled-btb, #scrollee-btb, #menu-btb, #canvas_wrap-btb, #content-btb { display:none; } " +
+					"#loading_wrapper-btb{ display:block; }</style>\n"
 				);
 				///	detects canvas-enabled browsers and initiates animation scenario;
 				//	must be run as soon as possible to prevent landing flickers;
@@ -12,7 +12,7 @@
 				btb.canvasEnabled	= canvas && canvas.getContext && canvas.getContext( '2d' ) && canvas;
 				if( btb.canvasEnabled )
 				{
-					document.write( "\t\t<style type=\"text/css\">#canvas_warning { display:none; }</style>\n" );
+					document.write( "\t\t<style type=\"text/css\">#canvas_warning-btb { display:none; }</style>\n" );
 				}
 			}) ();
 		</script>

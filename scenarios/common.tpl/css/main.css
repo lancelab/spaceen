@@ -59,7 +59,7 @@
 		background-color : transparent;
 	}
 
-	#scrollee
+	#scrollee-btb
 	{
 		/*	"relative" is a "Bone to JSless clients."
 			Seems as very risky. "absolute" would be more solid.
@@ -71,7 +71,7 @@
 		background-color : transparent;
 	}
 
-	#menu 
+	#menu-btb 
 	{
 		position : fixed;
 		left : 20px;
@@ -81,12 +81,12 @@
 		overflow : hide;
 	}
 
-	#img_menu_selector
+	#img_menu_selector-btb
 	{
 		visibility : hidden;
 	}
 
-	.section
+	.section-btb
 	{
 		width : 90%;
 		padding-left : 20px;
@@ -96,7 +96,7 @@
 	}
 
 
-	.list
+	.list-btb
 	{
 		height : 20px;
 		display : block;
@@ -109,7 +109,7 @@
 		list-style-type : none;
 	}
 
-	#menu-background
+	#menu-background-btb
 	{
 		position : absolute;
 		left : -10px;
@@ -118,7 +118,7 @@
 	}
 
 
-	div.dynamic_image_placeholder
+	div.dynamic_image_placeholder-btb
 	{
 		position : relative;
 		padding-top : 10px;
@@ -126,14 +126,14 @@
 		/* left : 40px; ? */;
 	}
 
-	img.dynamic_image_placeholder
+	img.dynamic_image_placeholder-btb
 	{
 		position : relative;
 		left : 10%;
 		width : 80%;
 	}
 
-	img.hider
+	img.hider-btb
 	{
 		position : absolute;
 		left : 0px;
@@ -143,7 +143,7 @@
 	}
 
 
-	#canvas_wrap	
+	#canvas_wrap-btb	
 	{
 		/* this is a big problem with mobiles */
 		position : fixed;
@@ -156,7 +156,7 @@
 		overflow : hidden;
 	}
 
-	#canvasBgIm
+	#canvasBgIm-btb
 	{
 		position : absolute;
 		top : 0px;
@@ -165,7 +165,7 @@
 		height : 100%;
 	}
 
-	#canvas
+	#canvas-btb
 	{
 		position : relative;
 		left : 0px;
@@ -182,12 +182,12 @@
 		font-size : 10px;
 	}
 
-	ul.circle
+	ul.circle-btb
 	{
 		list-style-type : circle;
 	}
 
-	.attention
+	.attention-btb
 	{
 		color : #FFFFBE;
 	}

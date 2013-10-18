@@ -1,11 +1,13 @@
 
 #white list
+#includes "core" files and excludes non-listed private subapps
 
 /*
 !/js/
 !/deployer/
 !/php_templater/
 !/dev/
+!/doc/
 !/scenarios/
 /scenarios/*
 
@@ -13,7 +15,14 @@
 !/scenarios/common.tpl/
 !/scenarios/intro/
 !/scenarios/txt/
-!/scenarios/logo/
+
+!/scenarios/logo/common.tpl
+!/scenarios/logo/home.cont
+!/scenarios/logo/animated-img
+!/scenarios/logo/game-aqua
+!/scenarios/logo/words
+
+
 !/scenarios/nebulae-demo/
 !/scenarios/tester/
 

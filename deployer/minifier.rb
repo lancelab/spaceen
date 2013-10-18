@@ -74,13 +74,12 @@
 
 
 
-
-
-
-
-
-
-
+  def create_folder_if_not_exists( folder )
+	if !File.exists?( folder ) or !File.directory?( folder )
+	  puts	'... creating eng. folder ' + folder
+	  Dir.mkdir folder
+	end
+  end 
 
 
 
@@ -97,7 +96,7 @@
 	landing_folder_sl				=	landing_folder + '/'
 	puts								"\n" + landing_folder_base + " deployment began.\n... Landing_folder=" + landing_folder
 	landing_prod_folder				=	scenarios_prod_folder + '/' + landing_folder_base
-
+	engine_parent_folder			=	landing_prod_folder + '/' + @minif_eng_folder_from_landing
 
 	########################################################################################################################
 	#	Gets single-file response from server and writes it to disk creating source for minifying
@@ -216,7 +215,8 @@
 
 							if @move_into_subapp_jq
 
-								wJQuery	= landing_prod_folder + '/' + @minif_eng_folder_from_landing + '/' + @jQuery_final_name
+								create_folder_if_not_exists engine_parent_folder
+								wJQuery	= engine_parent_folder + '/' + @jQuery_final_name
 								puts '... jQuery ... ' + wJQuery
 							    File.open( wJQuery, 'w' ){ |f| f.write( text ) }
 								product +=	'<script type="text/javascript" src="' + @minif_eng_folder_from_landing + '/' + @jQuery_final_name +
@@ -260,6 +260,8 @@
 		puts '... minified_engine=' + minified_engine 
 		# puts '... product=' + product.slice(0, 10) + '...'
 	    File.open( minified_html, 'w' ){ |f| f.write( product ) }
+
+		create_folder_if_not_exists engine_parent_folder 
 	    File.open( minified_engine, 'w' ){ |f| f.write( product_scripts ) }
 
 		wCommand = 'rm ' + minifyee_html

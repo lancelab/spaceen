@@ -1,26 +1,26 @@
 <?php ?>
-		<div id="menu" >
+		<div id="menu-btb" >
 
-			<div id="menu-background" >
-				<img id="img_menu_selector" src="img/web_page/lightonie.png" >
+			<div id="menu-background-btb" >
+				<img id="img_menu_selector-btb" src="img/web_page/lightonie.png" >
 			</div>
 
-			<div id="menu-content" >
+			<div id="menu-content-btb" >
 
-				<a id="m_introduction" class="list" href="#introduction">Guest Readme</a>
-				<a id="m_components" class="list" href="#components">Gamions</a>
-				<a id="m_loading_games" class="list" href="#loading_games">Loading Games</a>
-				<a id="m_solver" class="list" href="#solver">Solver</a>
-				<a id="m_kids" class="list" href="#kids">Puzzles for Kids</a>
-				<a id="m_whirly" class="list" href="http://www.whirlio.com/doc/whirly.htm">Whirly</a>
-				<a id="m_crafting_games" class="list" href="http://www.whirlio.com/doc/crafting_games.htm">Crafting Games</a>
-				<a id="m_creativity_indices" class="list" href="http://www.whirlio.com/doc/creativity_indices.htm">Scores and Metrics</a>
-				<a id="m_whirly_and_sokoban" class="list" href="http://www.whirlio.com/doc/whirly_and_sokoban.htm">Whirly and Sokoban Variants</a>
-				<a id="m_app_developer_readme" class="list" href="http://www.whirlio.com/doc/app_developer_readme.htm">Developing Engine</a>
-				<a id="m_project_files" class="list" href="http://www.whirlio.com/doc/project_files.htm">Project Files</a>
-				<a id="m_feedback"	class="list" href="http://www.whirlio.com//feeder/feedback/"
+				<a id="m_introduction-btb" class="list-btb" href="#introduction-btb">Guest Readme</a>
+				<a id="m_components-btb" class="list-btb" href="#components-btb">Gamions</a>
+				<a id="m_loading_games-btb" class="list-btb" href="#loading_games-btb">Loading Games</a>
+				<a id="m_solver-btb" class="list-btb" href="#solver-btb">Solver</a>
+				<a id="m_kids-btb" class="list-btb" href="#kids-btb">Puzzles for Kids</a>
+				<a id="m_whirly-btb" class="list-btb" href="http://www.whirlio.com/doc/whirly.htm">Whirly</a>
+				<a id="m_crafting_games-btb" class="list-btb" href="http://www.whirlio.com/doc/crafting_games.htm">Crafting Games</a>
+				<a id="m_creativity_indices-btb" class="list-btb" href="http://www.whirlio.com/doc/creativity_indices.htm">Scores and Metrics</a>
+				<a id="m_whirly_and_sokoban-btb" class="list-btb" href="http://www.whirlio.com/doc/whirly_and_sokoban.htm">Whirly and Sokoban Variants</a>
+				<a id="m_app_developer_readme-btb" class="list-btb" href="http://www.whirlio.com/doc/app_developer_readme.htm">Developing Engine</a>
+				<a id="m_project_files-btb" class="list-btb" href="http://www.whirlio.com/doc/project_files.htm">Project Files</a>
+				<a id="m_feedback-btb"	class="list-btb" href="http://www.whirlio.com//feeder/feedback/"
 									title="Submit your comments, maps, scores, solutions, or games">Submit your comments ...</a>
-				<a id="m_credits" class="list" href="#credits">Credits</a>
+				<a id="m_credits-btb" class="list-btb" href="#credits-btb">Credits</a>
 
 			</div>
 
@@ -32,18 +32,18 @@
 
 
 
-		<div id="scrollee" >
+		<div id="scrollee-btb" >
 
-			<div id="d_introduction" class="section" >
+			<div id="d_introduction-btb" class="section-btb" >
 
-			<a id="introduction"> </a><h1>Whirlio. Guest Readme</h1>
+			<a id="introduction-btb"> </a><h1>Whirlio. Guest Readme</h1>
 
 
 				<ul>
 					<li>
 						<table>
-							<tr><td>Navigation:</td><td class="attention">Shift + arrow up/down:</td>	<td class="attention">forward/backward,</td></tr>
-							<tr><td></td>    <td class="attention">left/right:</td>				<td class="attention">left/right</td></tr>
+							<tr><td>Navigation:</td><td class="attention-btb">Shift + arrow up/down:</td>	<td class="attention-btb">forward/backward,</td></tr>
+							<tr><td></td>    <td class="attention-btb">left/right:</td>				<td class="attention-btb">left/right</td></tr>
 						</table><br>
 					</li>
 				</ui>
@@ -59,7 +59,7 @@
 
 
 
-			<div id="d_components" class="section" ><a id="components"> </a><h2>Gamions</h2>
+			<div id="d_components-btb" class="section-btb" ><a id="components-btb"> </a><h2>Gamions</h2>
 
 				In simple case, gamion is a Sokoban maps' collection.<br>
 				In general, gamion contains definitions of games, albums, and maps' collection.<br><br>
@@ -81,9 +81,9 @@
 
 				After merging, album displays itself as a listing on front-page. Game name often attached to album name.
 
-				<div class="dynamic_image_placeholder" >
-					<img class="dynamic_image_placeholder" src="img/web_page/components.png" >
-					<img class="hider" src="img/web_page/hider.png" >
+				<div class="dynamic_image_placeholder-btb" >
+					<img class="dynamic_image_placeholder-btb" src="img/web_page/components.png" >
+					<img class="hider-btb" src="img/web_page/hider.png" >
 				</div>
 
 				Traditionally dresses and maps can be copyrighted.<br><br>
@@ -100,9 +100,9 @@
 
 
 
-			<div id="d_loading_games"  class="section" >
+			<div id="d_loading_games-btb"  class="section-btb" >
 
-				<a id="loading_games"> </a>
+				<a id="loading_games-btb"> </a>
 				<h2>Loading Games</h2>
 
 				U R L - q u e r y    P a r a m e t e r s   control execution of the player. For example:<br>
@@ -126,18 +126,18 @@
 		
 				Games can be copy-pasted right into web page.<br>
 
-				<div class="dynamic_image_placeholder" >
-					<img class="dynamic_image_placeholder" src="img/web_page/loading_games.png" >
-					<img class="hider" src="img/web_page/hider.png" >
+				<div class="dynamic_image_placeholder-btb" >
+					<img class="dynamic_image_placeholder-btb" src="img/web_page/loading_games.png" >
+					<img class="hider-btb" src="img/web_page/hider.png" >
 				</div>
 
 			</div><!-- d_loading_games -->
 
 
 
-			<div id="d_solver" class="section">
+			<div id="d_solver-btb" class="section-btb">
 
-				<a id="solver" > </a>
+				<a id="solver-btb" > </a>
 				<h2>Solver ..</h2>
 
 				.. is breadth-first and weak. Its power depends on size of your computer memory.<br>
@@ -153,9 +153,9 @@
 				</ul>
 				<br>
 
-				<div class="dynamic_image_placeholder" >
-					<img class="dynamic_image_placeholder" src="img/web_page/solver.png" >
-					<img class="hider" src="img/web_page/hider.png" >
+				<div class="dynamic_image_placeholder-btb" >
+					<img class="dynamic_image_placeholder-btb" src="img/web_page/solver.png" >
+					<img class="hider-btb" src="img/web_page/hider.png" >
 				</div>
 
 				Examples of supplying slim in URL string:<br>
@@ -208,9 +208,9 @@
 
 
 
-			<div id="d_kids"  class="section" >
+			<div id="d_kids-btb"  class="section-btb" >
 
-				<a id="kids" > </a>
+				<a id="kids-btb" > </a>
 				<h2>Puzzles for Kids</h2>
 
 				Some of us have kids and want to develop their analytical skills ...<br>
@@ -221,9 +221,9 @@
 				<a href="http://www.whirlio.com/def/albums/kids/6co_colorban.json.txt">Kids 6 CoColo Dress</a>,  <a href="http://www.whirlio.com/def/albums/kids/collections/default/coco_maps.txt">Kids 6 CoColo Maps</a><br>
 				<a href="http://www.whirlio.com/def/albums/kids/7.json.txt">Kids 7 Dress</a>.<br><br>
 
-				<div class="dynamic_image_placeholder" >
-					<img class="dynamic_image_placeholder" src="img/web_page/kids.png" >
-					<img class="hider" src="img/web_page/hider.png" >
+				<div class="dynamic_image_placeholder-btb" >
+					<img class="dynamic_image_placeholder-btb" src="img/web_page/kids.png" >
+					<img class="hider-btb" src="img/web_page/hider.png" >
 				</div>
 
 				Yes, there are other challenges compare to mature age puzzles:<br>
@@ -236,9 +236,9 @@
 
 
 
-			<div id="d_credits"  class="section" >
+			<div id="d_credits-btb"  class="section-btb" >
 
-				<a id="credits" > </a>
+				<a id="credits-btb" > </a>
 				<h2>Credits</h2>
 
 				File: Sea_view_by_Moonlight.jpg<br><br>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html><head><title>JFON. Test samples.</title>
+
+	<meta charset="UTF-8">
+    <script src="../JFON.js"></script>
+
+<body><pre>
+
+
+	<h1>Readme</h1>
+
+	<script>
+		document.write( "\n" + btb$.jfon.readme );
+	</script>
+
+
+	<h1>JFON. Test samples.</h1>
+
+		Converts objects.
+		Result objects have functions converted to strings.
+		JSONifies resut objects.
+		Prints out JSONifieds.
+		Decodes JSONIfed back to original object.
+
+	<script>
+
+		var fullcase = 
+		{
+			aa		: [ 1, 2 ],
+			aapp	: [ 3, 4 ],
+			wrap	: function () { return( "function belonging propertry \"wrap\" \n" ); },
+			i10	: 10,
+			sString	: 'sString',
+			arr	:
+			[
+				function () { return( "in arr fun0 in fullcase\n" ); },
+				function () { return( "in arr fun1 in fullcase\n" ); },
+			],
+			second	: 
+			{
+				fun1	: function () { return( "second level fun0 in fullcase\n" ); },
+				fun2	: function () { return( "second level fun1 in fullcase\n" ); },
+				wrap	: 'simple string belonging property "wrap"'
+			}
+		};
+		fullcase.aapp.fun = function () { return 'method of array: second element = ' + this[1] + ";\n"; };
+
+		//////////////////	//\\	jsoning-unjsoning	///////////////////////
+
+
+		//.	JFONes
+		var en = btb$.jfon.encode( fullcase );
+		document.write( "JFONed=\n" + en );
+
+
+		//.	unJFONes
+		var de = btb$.jfon.decode( en );
+
+
+		//:	displays
+		// c onsole.log( 'unJFONed', de );
+		document.write( "\nResurrected functions in action\n");
+		document.write( de.wrap() );
+		document.write( de.second.fun1() );
+		document.write( de.second.fun2() );
+		document.write( de.arr[1]() );
+		document.write( de.aapp.fun() );
+
+
+
+
+		//	//\\	Neutral case: "JFON = JSON". Does not contain
+		//				functions,
+		//				arrays with object-like-properties,
+		//				property named as "wrap".
+		var neutral = 
+		{
+			aa		: [ 1, 2 ],
+			notwrap	: "not a wrap",
+			i10		: 10,
+			sString	: 'sString',
+			second	: 
+			{
+				not_fun1	: "string"
+			}
+		};
+
+		var en = btb$.jfon.encode( neutral );
+		document.write( "\n\nneutral JFONed=\n" + en );
+		var de = btb$.jfon.decode( en );
+		// c onsole.log( 'neutral unJFONed', de );
+
+	</script>
+	
+
+</pre></body></html>
+

@@ -263,7 +263,7 @@
 		return false;
 	}
 
-	///	One-time call to load all image groups usually at page landing
+	///	One-time call to initialte image-groups for loading, usually at page landing
 	load_images.groupsLoader.run = function ( toLoad, allLoadedCallback )
 	{
 		var gLd	= this;
@@ -298,7 +298,7 @@
 			}) ( tol.allLoaded );
 
 			var name			= tol.name;
-			gLd[ name ]			= load( tol );	// TODO bug: name cannot be 'run', 'allLoaded', etc.;
+			gLd[ name ]			= load( tol );	// TODO bug: name cannot be 'run', 'allLoaded', etc.; FIX=make gLd.names = {} and gLd.names[ name ] = load ....
 			grp[ gLd.loadsN ]	= gLd[ name ];
 			gLd.loadsN++;
 		}

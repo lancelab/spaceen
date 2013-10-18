@@ -4,7 +4,7 @@
 	// i ni_set( 'display_errors' , '1' );
 
 	$html_land_warn_and_bot_in_top_scen	=	true; // true ignores $templates variable
-	$canvas_background_img	=	'<img id="canvasBgIm" src="img/web_page/canvas_background.jpg">' . "\n";
+	$canvas_background_img	=	'<img id="canvasBgIm-btb" src="img/web_page/canvas_background.jpg">' . "\n";
 
 	$album_css				=	'absolute-content';
 	//$album_css				=	'main-and-fluid-canvas-wrappion';

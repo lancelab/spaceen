@@ -62,9 +62,8 @@
 	dsprite.prepareParameters = function ( loaded_sprites )
 	{ 
 			var capturer = graph.capturer;
-
 			if(	!(	conf.cflyer.sprites &&
-					( ( capturer.conf && !flyer.iteration ) ||  ( flyer.iteration && !conf.rerandom ) )
+					( ( graph.confRestoredFromCaptured && !flyer.iteration ) ||  ( flyer.iteration && !conf.rerandom ) )
 				)
 			){
 				dsprite.prepareConfig( loaded_sprites );

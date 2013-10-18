@@ -1,8 +1,9 @@
 
 SPACEseEN is a JavaScript experimental library to animate 2D or 3D scene on canvases.
 
+Experimental version. Use on your own risk.
 
-This README is for version: September 21, 2013. Version 0.0.82.
+This README is for version: October 17, 2013. Version 0.0.86.
 
 
 This project is client-JavaScript oriented.
@@ -69,6 +70,7 @@ F r a m e w o r k    c o m m o n    f i l e s
 S u b a p p    C o n f i g u r a t i o n
 
 	spaceen/js/core/conf.js					-	default configuration
+	spaceen/js/core/conf.js.doc.txt			-	configuration documentation
 	scenarios/albumX/subappY/js/*			-	overrides default
 	scenarios/albumX/subappY/index.php		-	configures assembly of html-request from templates and contents
 
@@ -84,7 +86,7 @@ S u b a p p    C o n f i g u r a t i o n
 
 D e p l o y m e n t
 
-	Requeres local server and php. Currently works with Apache, Linux, php 5.3.
+	Requeres local server, PHP 5.3.2+, and Ruby. Currently works with Apache, Linux.
 
 	deployer/toprod.sh			-	generates folder "prod"
 	deployer/toremote.sh		-	generates folder "prod" and deploys it to remote host
@@ -111,6 +113,8 @@ R e p l a y i n g    c a s t s	( This feature is suspended )
 	However, when their effectice conf.js is captured to a file, 
 	animation can be replayed without randomization.
 
+	To autoload captured config, put config.....js content into subapp-root/config.js/config.js
+	Config cannot contain functions with closure. ( Why: JFON.js comments and readme ).
 
 
 W e l c o m e    t o    S p a c e e n

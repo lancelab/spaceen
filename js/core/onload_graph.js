@@ -6,13 +6,15 @@
 
 
 
-( function () {
+( function ( $ ) {
 
 
 	var	btb				= window.btb$		= window.btb$			|| {};		
+	var jfon			= btb.jfon			= btb.jfon				|| {};
 	var	graph			= btb.graph			= btb.graph				|| {};
 	var conf			= graph.conf		= graph.conf			|| {};
 	var debby			= btb.debby			= btb.debby				|| {};
+	var	domjq			= graph.domjq		= graph.domjq			|| {};
 	var ifdeb			= btb.ifdeb;
 
 	var qKeyPars		= btb.getQueryKeyPairs( 'integrify' );
@@ -32,15 +34,41 @@
 
 		if( /d/.test( debby.core ) ) btb.deb( btb.detected );
 
+
+
+
+		//	//\\	PREPARES DOM-ELEMENTS	//////////////////////////////////////////
+
+		var btbSuff = 'btb';
+
 		///	Disables elements
 		var ww = [ 'canvasFgIm', 'java-script-disabled', 'content', 'scrollee', 'menu' ];
 		//.. in CSS: 'canvasBgIm2' 
 		for( var ii = 0; ii < ww.length; ii++)
 		{
-			var wEl = document.getElementById( ww[ ii ] );
-			//if( wEl ) wEl.style.display = 'none';	
-			if( wEl ) wEl.style.visibility = 'hidden'; // display = 'none';	
+			var wId = ww[ ii ] + '-' + btbSuff;
+			var wEl = document.getElementById( wId );
+			if( wEl ) wEl.style.visibility = 'hidden';
 		}	
+
+		//.	does enumerate dom-elements of interest
+		var ww =
+		[	'scrollee', 'menu', 'img_menu_selector', 'canvas_wrap', 'canvasBgIm',
+			'content', 'canvas', 'img_menu_selector'
+		];
+		for( var ii = 0; ii < ww.length; ii++)
+		{
+			var wId			= ww[ ii ];
+			var wSuff		= wId + '-' + btbSuff
+			domjq [ wId ] = $( '#' + wSuff );
+		}
+		var canvas					= graph.canvas = domjq.canvas[0];
+		graph.master_context		= canvas && canvas.getContext && canvas.getContext( '2d' );
+
+		//	\\//	PREPARES DOM-ELEMENTS	//////////////////////////////////////////
+
+
+
 
 
 
@@ -52,11 +80,13 @@
 		var wpaste = btb.paste_non_arrays;
 		//.	Overrides generic_conf with conf
 		wpaste( graph.conf, wpaste( graph.generic_conf, graph.conf ) );
-		//. Overrides settings if any
-		//.	Must run this before using conf.
-		graph.spawn_config( graph.conf );
 		//.	External conf overrides internal
-		if( graph.capturer && graph.capturer.conf ) wpaste( graph.conf, graph.capturer.conf );
+		if( graph.capturer && graph.capturer.conf )
+		{
+			wpaste( graph.conf, btb.fromJFON( graph.capturer.conf ) );
+			delete graph.capturer.conf;
+			graph.confRestoredFromCaptured = true;
+		}
 
 		//	//\\	Cleans up server's properties and pastes query
 		//:	Deletes keys with s_
@@ -77,10 +107,11 @@
 			graph.conf.stop_on_click = graph.conf.toggle_draw_on_click;
 		}
 
+		//.	Must run this before using conf.
+		graph.spawn_config( graph.conf );
 
 		//.	to add functions to this variable, but not to conf.
 		var confImgToLoad = btb.paste_non_arrays( {}, conf.imagesToLoad );
-
 
 		//	\\//	Cleans up server's properties and pastes query
 		//	\\//	FINALIZES CONFIGURATION	////////////////////////////////////////////
@@ -91,50 +122,28 @@
 
 
 
+		//	//\\	POSSIBLY OBSOLETE	//////////////////////////////////////////////////
 
 		//:	Fixes browser's quirks ... some mobiles "break" on fixed style positioning ...
 		// var ww							= $( '#canvas_wrap' );
 		// if( ww && btb.browser.mobile )	ww.css( 'position', 'absolute' );
+		//	\\//	POSSIBLY OBSOLETE	//////////////////////////////////////////////////
 
 
 
-		//	//\\ Example of how to setup image-load and declipifying
-		/*
-		if( btb.canvasEnabled )
-		{
-				///	Sets basic_images_to_load scenario of loading and declipping if btb.conf requires.
-				if( conf.basic_images_to_load )
-				{
-					//	//\\	Notifiers
-					confImgToLoad ... conf.basic_images_to_load.singleLoaded = function( ix, sprite )
-					{
-						ifdeb( 'image ' + ix + ' loaded; sprite.name = ' + sprite.name );
-					};
-
-					confImgToLoad ... conf.basic_images_to_load.allLoaded = function( lman )
-					{
-						firePostAnimation();
-						ifdeb( 'all basic images digested' );
-					};
-					//	\\//	Notifiers
-
-					//.	Begins loading
-					load_images.load( conf.basic_images_to_load );
-				}
 
 
-				///	Sets content-images_to_load scenario of loading and declipping if btb.conf requires.
-				if( conf.images_to_load )
-				{
-					load_images.load( conf.images_to_load );
-				}
-		}	// else{ //	if( btb.canvasEnabled ) TODM here to add PostLoad animation for non-canvas-clipped images.
-		*/
-		//	\\// Example of how to setup image-load and declipifying
+
+
+
+		//	//\\	IMAGE-GROUP LOADING INITIATION	//////////////////////////////////////////
+
+		//... Example of how to setup image-load and declipifying. see js.doc
 
 		if( !conf.doSplashOnImgLoad )
 		{
 			var endOfImgLoadCallback = null;
+
 		}else{
 
 			var endOfImgLoadCallback = function()
@@ -142,10 +151,10 @@
 
 				ifdeb( 'onload-img splash-scenario began' );
 
-				var can_jq = $( '#canvas_wrap' );
-				var men_jq = $( '#menu' );
-				var scrollee_jq = $( '#scrollee' );
-				var content_jq	= $( '#content' );
+				var can_jq		= domjq.canvas_wrap;
+				var men_jq		= domjq.menu;
+				var scrollee_jq	= domjq.scrollee;
+				var content_jq	= domjq.content;
 
 				if( conf.landingSplashDuration )
 				{
@@ -162,16 +171,12 @@
 					ifdeb( 'splash-animation began' );
 				}
 
-				can_jq.css( 	'display', 'block' );
-				can_jq.css( 	'visibility', 'visible' );
-				men_jq.css(		'visibility', 'visible' );
-				content_jq.css( 'visibility', 'visible' );
-
-
-				scrollee_jq.css( 'visibility', 'visible' );
-		
-				$( '#img_menu_selector' ).css( { visibility : 'visible' } );
-
+				can_jq.css( 		'display', 'block' );
+				can_jq.css( 		'visibility', 'visible' );
+				men_jq.css(			'visibility', 'visible' );
+				content_jq.css(		'visibility', 'visible' );
+				scrollee_jq.css(	'visibility', 'visible' );
+				domjq.img_menu_selector.css( 'visibility', 'visible' );
 				men_jq.css(			'display', 'block' );
 				scrollee_jq.css(	'display', 'block' );
 
@@ -183,17 +188,40 @@
 			};
 		}	
 
+		///	initiates loading of image-groups
 		graph.load_images.groupsLoader.run( confImgToLoad, function () {
+
 			ifdeb( "Notified to onload: all image groups are loaded" );
 			if( endOfImgLoadCallback ) endOfImgLoadCallback();
 		});
 
-		var wWait = !!graph.load_images.groupsLoader.loadsN;
-  		graph.animatorWaitsForImgLoad = conf.animatorWaitsForImgLoad && wWait;
-  		graph.sceneRunnerWaitsForImg = conf.sceneRunnerWaitsForImg && wWait;
+		//:	sets waitings in case some img-group-loading initiated
+		var wWait						= !!graph.load_images.groupsLoader.loadsN;
+  		graph.animatorWaitsForImgLoad	= conf.animatorWaitsForImgLoad && wWait;
+  		graph.sceneRunnerWaitsForImg	= conf.sceneRunnerWaitsForImg && wWait;
 
-		//.	calls scenario from subapp
+		//	\\//	IMAGE GROUP LOADING INITIATION	//////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+		//	//\\	CALLS SCENARIO FROM SUBAPP	//////////////////////////////////////////
 		graph.scenario.run();
+		//	\\//	CALLS SCENARIO FROM SUBAPP	//////////////////////////////////////////
+
+
+
+
+
+
+
+
+		//	//\\	POST-INITIATION WORKS	//////////////////////////////////////////
 
 		if( ( !graph.animatorWaitsForImgLoad && !graph.sceneRunnerWaitsForImg && !conf.doSplashOnImgLoad ) || !conf.keepLoadingMsgTillImgLoad )
 		{
@@ -203,7 +231,7 @@
 			ifdeb( '"loading ... " warning will be removed later ' );
 		}
 
-		//.	Captures conf data
+		//.	Sets event to capture data
 		btb.bindEvents (
 			'keydown',
 			document.body,
@@ -231,10 +259,16 @@
 		if( /D/.test( debby.core ) ) btb.saveObjectToServer( 'detected', btb.detected );
 		btb.ifdeb( 'doc ready fired' );
 
+		//	\\//	POST-INITIATION WORKS	//////////////////////////////////////////
+
+
 	}); // 	$( function () {
 
 
-	///	Loads captured data
+
+
+
+	//	//\\	LOADS CAPTURED DATA BEFORE wnidow.onload EVENT	//////////////////////////////////////////
 	( function () {
 		if( qKeyPars.captured )
 		{
@@ -254,5 +288,8 @@
 			//	document.header.appendChild( script );
 		}
 	}) ();
+	//	\\//	LOADS CAPTURED DATA BEFORE wnidow.onload EVENT	//////////////////////////////////////////
 
-}) ();
+
+
+}) ( jQuery );

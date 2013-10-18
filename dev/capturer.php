@@ -1,8 +1,8 @@
 <?php
 
 
-	// ini_set( 'display_errors', '1' );
-	// error_reporting( E_ALL );
+	ini_set( 'display_errors', '1' );
+	error_reporting( E_ALL );
 
 	///	Captures data and pictures.
 	if( empty( $_GET[ 'command' ] ) ) require_once ( '../../../dev/capturer.php' );
@@ -31,7 +31,11 @@
 
 			// $path = './js/captured' . $stamp . '.js';
 			$path = "$path_to_save.js";
-			$do_save_me = '<?php exit(); ?>' . $post;
+
+			//.	This is "oversecurity":
+			//	$do_save_me = '<?php exit(); ?' .'>' . $post;
+
+			$do_save_me = $post;
 			break;
 
 		case 'picture':
@@ -63,7 +67,7 @@ DOCDOCDOC;
 			
 			//$clean_pos = str_replace( ' ', '+', $post );
 			$clean = substr( $post, strpos( $post, ',' ) );	// TODM very slow?
-			$do_save_me = base64_decode( $clean );
+			$do_save_me = base64_decode( $clean );	// TODO sanity?
 			
 			if( $do_save_me === FALSE )
 			{

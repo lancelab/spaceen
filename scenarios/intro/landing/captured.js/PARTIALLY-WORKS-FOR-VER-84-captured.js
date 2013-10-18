@@ -460,11 +460,11 @@ graph.capturer.conf =
 			}
 		]
 	},
-	"itemsMax": 1,
+	"itemsMax": 50,
 	"backwardInTime": true,
 	"runInfinitely": true,
 	"ticksPeriod": 2500,
-	"playPeriod": 40000,
+	"playPeriod": 50000,
 	"turnTicksPoint": 1250,
 	"turnPonitPause": 6000,
 	"dontDrawAfterPeriod": true,

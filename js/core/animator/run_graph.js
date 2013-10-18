@@ -8,12 +8,16 @@
 
 	var btb			= window.btb$		= window.btb$			|| {};		
 	var graph		= btb.graph			= btb.graph				|| {};	// Plugin itself
+
+	var gater		= graph.gater		= graph.gater			|| {};
+
 	var conf		= graph.conf		= graph.conf			|| {};
 	var	conf3D		= conf.conf3D		= conf.conf3D			|| {};
 	var usprite		= graph.usprite		= graph.usprite			|| {};
 	var mstones 	= graph.mstones		= graph.mstones			|| {};
 	var virt		= graph.virt		= graph.virt			|| {};
 	var	lensT		= graph.lensTransformation	= graph.lensTransformation	|| {};
+	var	domjq		= graph.domjq		= graph.domjq			|| {};
 	var debby		= btb.debby			= btb.debby				|| {};
 	var ifdeb;
 
@@ -55,10 +59,9 @@
 	{
 
 			ifdeb			= btb.ifdeb;
-
 			ifdeb( 'graph.init entered' );
 
-			canvas_wrap = document.getElementById( 'canvas_wrap' );
+			canvas_wrap = document.getElementById( 'canvas_wrap-btb' );
 			if( !canvas_wrap ) return;
 
 			master_context = graph.master_context;
@@ -85,14 +88,14 @@
 			if( conf.disable_landing_loading_warning )
 			{
 				//.	Disables "loading" warning
-				var ww = document.getElementById( 'loading' );
+				var ww = document.getElementById( 'loading-btb' );	//	TODM should be somewhere in upper scenario
 				if( ww ) ww.style.display = 'none';	
 			}
 
 
 			//:	Sets in-line CSS dynamically
-			if( conf.min_width		) $( canvas ).css( 'min-width', conf.min_width );
-			if( conf.min_height		) $( canvas ).css( 'min-height', conf.min_height );
+			if( conf.min_width		) domjq.canvas.css( 'min-width', conf.min_width );
+			if( conf.min_height		) domjq.canvas.css( 'min-height', conf.min_height );
 			if( conf.body_overflow	) document.body.style.overflow = conf.body_overflow;
 			if( conf.wrap_overflow	) canvas_wrap.style.overflow = conf.wrap_overflow;
 
@@ -169,18 +172,21 @@
 			// c ccc( 'init: canvas-css width/height=' + $( canvas ).css( 'width' ) + '/' + $( canvas ).css( 'height' ) );
 			// c ccc( 'init: fgImg width/height=' + $( '#canvasFgIm' ).css( 'width' ) + '/' + $( '#canvasFgIm' ).css( 'height' ) );
 
-			//: Resets animation up
+			if( gater.defaultScenario ) gater.defaultScenario();
 
+			//:		Resets animation up
 			throttledResize();
+			//..	graph.init = function
+
+
+
+
+			// //\\	Events	///////////////////////////////////////////////////////////////
 
 			if( conf.movingObserver )
 			{
 				$( document.body ).bind( 'keydown', requested_3D_navigator || graph.default_3D_navigator );
 			}
-
-
-			//..	graph.init = function
-
 
 			//.	Enables animation resetting at window.onresize
 			//	Does this AFTER initial animation fire-up.
@@ -216,9 +222,6 @@
 			}
 
 
-	
-
-
 			///	Sets stop/start animation on click.
 			graph.mstones.ownMoveStopped = conf.startFromStopped;
 
@@ -236,9 +239,12 @@
 					);
 				}
 			}
+			// \\//	Events	///////////////////////////////////////////////////////////////
+
+
 
 			if( conf.doLogDetected ) graph.capturer.capture( 'log detected' );
-			if( conf.debugmode ) graph.detectAppleAnomaly ();
+			if( debby.extra ) graph.detectAppleAnomaly ();
 			ifdeb( 'graph.init completed.' );
 
 	}; /// graph.init
@@ -246,8 +252,12 @@
 
 
 
+
+
+
+
 	///	Shortcut
-	var timeoutAnimationFrame = function( callback,  element )
+	var timeoutAnimationFrame = function( callback )
 	{
 		window.setTimeout( callback, conf.animationInterval );
 	};
@@ -344,29 +354,29 @@
 		}
 
 
-						//.	Initializes tick-time counts
-						if( graph.startTime === null )
-						{
-							graph.startTime		= conf.timeFromTicks ? 0 : (new Date()).getTime();
-							mstones.ticks		= 0;
-							mstones.pastTicks	= 0;
-						}
+		//.	Initializes tick-time counts
+		if( graph.startTime === null )
+		{
+			graph.startTime		= conf.timeFromTicks ? 0 : (new Date()).getTime();
+			mstones.ticks		= 0;
+			mstones.pastTicks	= 0;
+		}
 
-						if( conf.timeFromTicks )
-						{
-							var time			= conf.tickTimeStep * mstones.ticks; 
-						}else{
-							var time			= (new Date()).getTime() - graph.startTime;
-						var ww				= Math.floor( time / conf.playPeriod * conf.ticksPeriod );
-							var ticks_change	= ww - mstones.pastTicks;
-							mstones.ticks		= ww;
-							effective_ticks		= mstones.ticks;
-						}
-						var effective_ticks		= mstones.ticks;
-						var ticks_change		= mstones.ticks - mstones.pastTicks;
-						//. pastTicks is no longer needed for iteration-preparation. Set it to new value
-						mstones.pastTicks = mstones.ticks;
-						mstones.ticksPhase = mstones.ticks / conf.ticksPeriod; //TODM "turn point and pause anaware";
+		if( conf.timeFromTicks )
+		{
+			var time			= conf.tickTimeStep * mstones.ticks; 
+		}else{
+			var time			= (new Date()).getTime() - graph.startTime;
+			var ww				= Math.floor( time / conf.playPeriod * conf.ticksPeriod );
+			var ticks_change	= ww - mstones.pastTicks;
+			mstones.ticks		= ww;
+			effective_ticks		= mstones.ticks;
+		}
+		var effective_ticks		= mstones.ticks;
+		var ticks_change		= mstones.ticks - mstones.pastTicks;
+		//. pastTicks is no longer needed for iteration-preparation. Set it to new value
+		mstones.pastTicks = mstones.ticks;
+		mstones.ticksPhase = mstones.ticks / conf.ticksPeriod; //TODM "turn point and pause anaware";
 
 						/*
 						///	Good debug code
@@ -378,50 +388,50 @@
 						*/
 
 
-						var wttp				= conf.turnTicksPoint;
-						mstones.inPausePhase	= -1;
+		var wttp				= conf.turnTicksPoint;
+		mstones.inPausePhase	= -1;
 
 
-						if( wttp && mstones.ticks >= wttp )
-						{
-							var turnTime		= conf.tickTimeStep * wttp;
-							var wpause			= conf.turnPonitPause;
+		if( wttp && mstones.ticks >= wttp )
+		{
+			var turnTime		= conf.tickTimeStep * wttp;
+			var wpause			= conf.turnPonitPause;
 
-							mstones.turnEnterEntered		= !mstones.turnEnterPassed;
-							if( mstones.turnEnterEntered )	mstones.turnEnterPassed = true;
+			mstones.turnEnterEntered		= !mstones.turnEnterPassed;
+			if( mstones.turnEnterEntered )	mstones.turnEnterPassed = true;
 
-							if( wpause )
-							{
+			if( wpause )
+			{
 
-								mstones.pauseEnterEntered = !mstones.pauseEnterPassed && mstones.turnEnterEntered;
-								if( mstones.pauseEnterEntered )	mstones.pauseEnterPassed = true;
+				mstones.pauseEnterEntered = !mstones.pauseEnterPassed && mstones.turnEnterEntered;
+				if( mstones.pauseEnterEntered )	mstones.pauseEnterPassed = true;
 
-								mstones.inPausePhase	= ( time - turnTime ) / wpause;
-								if( mstones.inPausePhase <= 1 )
-								{
+				mstones.inPausePhase	= ( time - turnTime ) / wpause;
+				if( mstones.inPausePhase <= 1 )
+				{
 									//c ccc( ' ticks=' + ticks + ' time=' + time );
 									//.	Keeps effective ticks at the turn point
-									effective_ticks = wttp;
-									mstones.culminationEnterEntered			= !mstones.culminationEnterPassed && mstones.inPausePhase >= 0.5 ;
-									if( mstones.culminationEnterEntered )	mstones.culminationEnterPassed = true;
+					effective_ticks = wttp;
+					mstones.culminationEnterEntered			= !mstones.culminationEnterPassed && mstones.inPausePhase >= 0.5 ;
+					if( mstones.culminationEnterEntered )	mstones.culminationEnterPassed = true;
 
-								}else{
-									//::	After-pause area
-									mstones.turnExitEntered					= !mstones.turnExitPassed;
-									if( mstones.turnExitEntered )			mstones.turnExitPassed = true;
-									mstones.culminationEnterEntered			= !mstones.culminationEnterPassed;
-									if( mstones.culminationEnterEntered )	mstones.culminationEnterPassed = true;
-									mstones.inPausePhase					= -2;
-									//.	Subtracts pause from effective ticks
-									effective_ticks	= Math.floor( ( time - wpause ) / conf.playPeriod * conf.ticksPeriod );
-								}
-							}
-						}else{
-							//::	After-pause area
-							mstones.turnExitEntered					= !mstones.turnExitPassed;
-							if( mstones.turnExitEntered )			mstones.turnExitPassed = true;
-							mstones.inPausePhase					= -2;
-						}
+				}else{
+					//::	After-pause area
+					mstones.turnExitEntered					= !mstones.turnExitPassed;
+					if( mstones.turnExitEntered )			mstones.turnExitPassed = true;
+					mstones.culminationEnterEntered			= !mstones.culminationEnterPassed;
+					if( mstones.culminationEnterEntered )	mstones.culminationEnterPassed = true;
+					mstones.inPausePhase					= -2;
+					//.	Subtracts pause from effective ticks
+					effective_ticks	= Math.floor( ( time - wpause ) / conf.playPeriod * conf.ticksPeriod );
+				}
+			}
+		}else{
+			//::	After-pause area
+			mstones.turnExitEntered					= !mstones.turnExitPassed;
+			if( mstones.turnExitEntered )			mstones.turnExitPassed = true;
+			mstones.inPausePhase					= -2;
+		}
 		///	Synchronizing with time, turnTime, and pause.
 
 		//.	Apparently: don't put >= below yet. Will have dramatic effect: pause is never entered ...	TODM fix this.
@@ -432,35 +442,36 @@
 
 		if( mstones.iterationExitPassed )
 		{
-							mstones.firstIterationIsCompleted = true;	// TODM any duplication?
+			mstones.firstIterationIsCompleted = true;	// TODM any duplication?
 
-							if( conf.runInfinitely )
-							{
-								// c ccc( time + ' ticks=' + ticks + ' eff. ticks=' + effective_ticks );
+			if( conf.runInfinitely )
+			{
+				// c ccc( time + ' ticks=' + ticks + ' eff. ticks=' + effective_ticks );
 
-								if( conf.reinitAfterIteration )
-								{
-									mstones.reinit();
+				if( conf.reinitAfterIteration )
+				{
+					mstones.reinit();
 
-									graph.startTime	= null; //(new Date()).getTime();
-									///	New color-shape-scenario at every new animation cycle
-									graph.flyer.init_sprites ();
-									select_animator( draw_and_reschedule );
-									return;
-								}
+					graph.startTime	= null; //(new Date()).getTime();
+					///	New color-shape-scenario at every new animation cycle
+					graph.flyer.init_sprites ();
+					select_animator( draw_and_reschedule );
+					return;
+				}
 
-							}else{
-								// c ccc( 'ticks > conf.ticksPeriod. Draw is skipped.' + ticks + ' ' + conf.ticksPeriod );
-								effective_ticks = conf.frozenTicksStart;
-								if( conf.stopAnimChainAfterIter )
-								{
-									stop_animation_chain = true;
-									neverRunAnimAgain = true;
-									ifdeb( 'Animation chain stopped after iter.' ); 
-									// c ccc( 'stopper: canvas-css width/height=' + $( canvas ).css( 'width' ) + '/' + $( canvas ).css( 'height' ) );
-									// c ccc( 'stopper: fgImg width/height=' + $( '#canvasFgIm' ).css( 'width' ) + '/' + $( '#canvasFgIm' ).css( 'height' ) );
-								}
-							}
+			}else{
+
+				// c ccc( 'ticks > conf.ticksPeriod. Draw is skipped.' + ticks + ' ' + conf.ticksPeriod );
+				effective_ticks = conf.frozenTicksStart;
+				if( conf.stopAnimChainAfterIter )
+				{
+					stop_animation_chain = true;
+					neverRunAnimAgain = true;
+					ifdeb( 'Animation chain stopped after iter.' ); 
+					// c ccc( 'stopper: canvas-css width/height=' + $( canvas ).css( 'width' ) + '/' + $( canvas ).css( 'height' ) );
+					// c ccc( 'stopper: fgImg width/height=' + $( '#canvasFgIm' ).css( 'width' ) + '/' + $( '#canvasFgIm' ).css( 'height' ) );
+				}
+			}
 		}
 
 		///	(( Clears before drawing. For complete clean up, don't draw after cleanup.))
@@ -477,24 +488,24 @@
 		if( did_draw )
 		{
 
-							//	TODM possibly need to put it here for better copyright protection.
-							//.	Puts garbage on the screen. Good but misplaced at resize.
-							//	if( conf.scaffold ) graph.putText( master_context, conf.scaffold );
+			//	TODM possibly need to put it here for better copyright protection.
+			//.	Puts garbage on the screen. Good but misplaced at resize.
+			//	if( conf.scaffold ) graph.putText( master_context, conf.scaffold );
 
-							if( conf.timeFromTicks ) mstones.ticks++;
-							if( !mstones.completedJustFirstFrame && !mstones.afterFirstFrame )
-							{
-								mstones.completedJustFirstFrame = true;
-								setCanvasVisible();	// TODM this seems not good because shows background image before
-													// canvas is refreshed although canvas is drawn earlier;
-													// This is a rough but helpless solution: setTimeout( setCanvasVisible, 500 );
-							}else{
-								mstones.afterFirstFrame = true;
-								mstones.completedJustFirstFrame = false;
-							}
-							// c ccc( time );
-							// if( stop_afer_tick && mstones.ticks > 10 ) graph.animation_is_allowed = false;
-							if( stop_afer_tick ) graph.animation_is_allowed = false;
+			if( conf.timeFromTicks ) mstones.ticks++;
+			if( !mstones.completedJustFirstFrame && !mstones.afterFirstFrame )
+			{
+				mstones.completedJustFirstFrame = true;
+				setCanvasVisible();	// TODM this seems not good because shows background image before
+									// canvas is refreshed although canvas is drawn earlier;
+									// This is a rough but helpless solution: setTimeout( setCanvasVisible, 500 );
+			}else{
+				mstones.afterFirstFrame = true;
+				mstones.completedJustFirstFrame = false;
+			}
+			// c ccc( time );
+			// if( stop_afer_tick && mstones.ticks > 10 ) graph.animation_is_allowed = false;
+			if( stop_afer_tick ) graph.animation_is_allowed = false;
 		}
 
 
@@ -555,12 +566,12 @@
 			scrHeight	= graph.scrHeight	= ww_h;
 
 			// TODM wrong: if min-width is set in CSS for canvas
-			graph.scrCenterX	= conf.screen_center_x !== null ?
-					conf.screen_center_x :
+			graph.scrCenterX	= conf.screen_center_x || conf.screen_center_x === 0 ?
+					conf.screen_center_x  :
 					//.	Sugar
 					Math.floor(scrWidth/2);
 			
-			graph.scrCenterY	= conf.screen_center_y !== null ?
+			graph.scrCenterY	= conf.screen_center_y || conf.screen_center_y === 0 ?
 					conf.screen_center_y :
 					//.	Sugar
 					Math.floor(scrHeight/2);
@@ -608,8 +619,8 @@
 				if( conf.min_width && new_width < conf.min_width	) new_width = conf.min_width;
 				if( conf.min_height && new_height < conf.min_height ) new_height = conf.min_height;
 
-				$( canvas ).css( 'width', new_width );
-				$( canvas ).css( 'height', new_height );
+				domjq.canvas.css( 'width', new_width );
+				domjq.canvas.css( 'height', new_height );
 
 				// c ccc( 'new_width; new_height ::: ' + new_width + '; ' + new_height );
 				// c ccc( 'reset_animation: canvas-css width/height=' + $( canvas ).css( 'width' ) + '; ' + $( canvas ).css( 'height' ) );
@@ -654,10 +665,10 @@
 		//$( '#canvas_wrap' ).css( 'display', 'block' );
 		//$( '#canvas_wrap' ).css( 'visibility', 'visible' );
 
-		$( canvas ).css( 'visibility', 'visible' );
-		$( canvas ).css( 'display', 'block' );
+		domjq.canvas.css( 'visibility', 'visible' );
+		domjq.canvas.css( 'display', 'block' );
 
-		var bg_jq = $( '#canvasBgIm' );
+		var bg_jq = domjq.canvasBgIm;
 		if( conf.unfadeBgImgTimeMs )
 		{
 			bg_jq.css( 'opacity', 0 );

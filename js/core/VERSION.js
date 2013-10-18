@@ -14,8 +14,8 @@
 		copyright	:	"Copyright (C) 2013 Konstantin Kirillov",
 		license		:	"MIT except folder \"scenarios\" which have own licenses",
 
-		version		:	"Version 0.0.82",
-		date		:	"September 9, 2013."
+		version		:	"Version 0.0.85",
+		date		:	"October 9, 2013."
 	}
 	
 }) ();

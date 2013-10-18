@@ -32,8 +32,8 @@
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		//: CONTROL FRAGMENT ////////////////////////////////////////
-		var canvas_wrap_jq			= $( '#canvas_wrap' );
-		var canvasBgIm_jq			= $( '#canvasBgIm' );
+		var canvas_wrap_jq			= $( '#canvas_wrap-btb' );
+		var canvasBgIm_jq			= $( '#canvasBgIm-btb' );
 		var canvasHeightToWidth		= conf.canvasHeightToWidth;
 		var landingSplashDuration	= conf.landingSplashDuration;
 		//.	... some mobiles "break" on fixed style positioning ...

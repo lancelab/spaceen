@@ -11,6 +11,7 @@
 ( function () {
 
 		var btb				= window.btb$			= window.btb$				|| {};
+		var jfon			= btb.jfon				= btb.jfon					|| {};
 		var det				= btb.detected			= btb.detected				|| {};		
 		var graph			= btb.graph				= btb.graph					|| {};
 		var conf			= graph.conf			= graph.conf				|| {};
@@ -36,19 +37,19 @@
 			// TODO misses count: 1 < 2; some code fails to do conf.			if( capturer.count < capturer.maxCount && action !== 'save picture' ) return;
 			// c ccc( capturer.count + "<" +  capturer.maxCount );
 
-			if( conf.capture ) delete conf.capture;
-
 			var timeStamp = det.timeStamp;
 			url = ( url || '../../../dev/capturer.php' ) + '?stamp='  + timeStamp;
 
 			if( doLogMe )
 			{
 				url	+=	'&command=snap';
-				var ww = JSON.stringify( doLogMe, null, '\t');
+				// var ww = JSON.stringify( doLogMe, null, '\t');
+				var ww = jfon.encode( doLogMe );
 				btb.saveTextToServer( url, "doLogMe = \n" + ww );
 
 			}else if( action === 'show config' || action === 'save config' ) {
-				var confJSONED = JSON.stringify( conf, null, '\t');
+				// var confJSONED = JSON.stringify( conf, null, '\t');
+				var confJSONED = jfon.encode( conf );
 				var confTxt = header + "graph.capturer.conf = \n" + confJSONED + ";\n" + footer;
 				if( action === 'show config' )
 				{
@@ -91,10 +92,7 @@
 			"\n";
 		;
 
-		var footer =
-			"\n" +
-			"btb.paste_non_arrays( conf, graph.capturer.conf );\n" +
-			"}) ();\n";
+		var footer = "\n}) ();\n";
 
 
 }) ();

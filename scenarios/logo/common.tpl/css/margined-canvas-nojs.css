@@ -48,7 +48,7 @@
 		color : #000000;
 	}
 
-	#canvas_wrap
+	#canvas_wrap-btb
 	{
 		position			: absolute;
 		width				: 94%;
@@ -59,13 +59,13 @@
 	}	
 
 
-	#canvas
+	#canvas-btb
 	{
 		width				: 100%;
 		height				: 95%;
 	}
 
-	#content
+	#content-btb
 	{
 		width				: 100%;
 		height				: 7%;
@@ -96,7 +96,7 @@
 
 	/* //\\ Deviations for warnings */
 
-	#canvas_warning
+	#canvas_warning-btb
 	{
 		position	: fixed;
 		text-align	: center;
@@ -104,7 +104,7 @@
 	}
 
 	/*	Modifies warnings */
-	#java-script-disabled
+	#java-script-disabled-btb
 	{
 		top			: 0px;
 		left		: 0px;
@@ -113,7 +113,7 @@
 	}
 
 	/*	Modifies warnings */
-	#js-disabled-subdiv
+	#js-disabled-subdiv-btb
 	{
 		top					: 5px;
 		left				: 3%;

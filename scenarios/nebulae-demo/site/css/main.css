@@ -70,7 +70,7 @@
 	}
 
 
-	#scrollee
+	#scrollee-btb
 	{
 		position				: absolute;
 		width					: 70%;
@@ -89,7 +89,7 @@
 
 	}
 
-	#padder
+	#padder-btb
 	{
 		position				: absolute;
 		width					: 120%;
@@ -99,7 +99,7 @@
 		overflow				: auto;
 	}
 
-	.section
+	.section-btb
 	{
 		width : 70%;
 		font-size : 14px;
@@ -112,7 +112,7 @@
 	}
 
 
-	#canvas_wrap	
+	#canvas_wrap-btb	
 	{
 		position : absolute;
 
@@ -124,7 +124,7 @@
 		overflow : hidden;
 	}
 
-	#canvasBgIm
+	#canvasBgIm-btb
 	{
 		position : absolute;
 		top : 0px;
@@ -133,7 +133,7 @@
 		height : 100%;
 	}
 
-	#canvas
+	#canvas-btb
 	{
 		position : relative;
 		left : 0px;
@@ -155,7 +155,7 @@
 		list-style-type : circle;
 	}
 
-	.attention
+	.attention-btb
 	{
 		color : #FFFFBE;
 	}

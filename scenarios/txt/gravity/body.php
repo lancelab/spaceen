@@ -1,14 +1,14 @@
 <?php ?>
-		<div id="menu" >
+		<div id="menu-btb" >
 
-			<div id="menu-background" >
-				<img id="img_menu_selector" src="img/web_page/lightonie.png" >
+			<div id="menu-background-btb" >
+				<img id="img_menu_selector-btb" src="img/web_page/lightonie.png" >
 			</div>
 
-			<div id="menu-content" >
+			<div id="menu-content-btb" >
 
-				<a id="m_introduction" class="list" href="#introduction" >.</a>
-				<a id="m_credits" class="list" href="#credits">.</a>
+				<a id="m_introduction-btb" class="list-btb" href="#introduction" >.</a>
+				<a id="m_credits-btb" class="list-btb" href="#credits-btb">.</a>
 
 			</div>
 
@@ -20,19 +20,19 @@
 
 
 
-		<div id="scrollee" >
+		<div id="scrollee-btb" >
 
-			<div id="d_introduction" class="section" >
+			<div id="d_introduction-btb" class="section-btb" >
 
-			<a id="introduction"> </a><h1>Gravity ... </h1>
+			<a id="introduction-btb"> </a><h1>Gravity ... </h1>
 
 				... is the word we use for something<br>
 				which holds these balls together ...<br><br>
 
 				
 				<table>
-					<tr><td>Navigation:</td>	<td class="attention">Shift + arrow-up/down:</td>		<td class="attention">forward/backward,</td></tr>
-					<tr><td></td>    			<td class="attention">Arrow-left/right:</td>			<td class="attention">left/right</td></tr>
+					<tr><td>Navigation:</td>	<td class="attention-btb">Shift + arrow-up/down:</td>		<td class="attention-btb">forward/backward,</td></tr>
+					<tr><td></td>    			<td class="attention-btb">Arrow-left/right:</td>			<td class="attention-btb">left/right</td></tr>
 				</table>
 
 			</div><!-- d_introduction -->
@@ -44,9 +44,9 @@
 
 
 
-			<div id="d_credits"  class="section" >
+			<div id="d_credits-btb"  class="section-btb" >
 
-				<a id="credits" > </a>
+				<a id="credits-btb" > </a>
 				<br><br>
 
 				Background:<br>
@@ -59,7 +59,7 @@
 				Site credits: <br>
 				<ul style="list-style-type: none;">
 					<li><a href="../../intro/landing">Demos</a></li>
-					<li><a href="../../../LICENSE" class="copyright">(c) 2013 KVK</a></li>
+					<li><a href="../../../LICENSE" class="copyright-btb">(c) 2013 KVK</a></li>
 					<!-- li>EMail:		beaverscript (@) landkey (.) net.</li -->
 				</ul>
 					

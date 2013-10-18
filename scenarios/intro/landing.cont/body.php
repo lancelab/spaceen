@@ -1,17 +1,17 @@
 <?php ?>
-		<div id="menu" >
+		<div id="menu-btb" >
 
-			<div id="menu-background" >
-				<img id="img_menu_selector" src="img/web_page/lightonie.png" >
+			<div id="menu-background-btb" >
+				<img id="img_menu_selector-btb" src="img/web_page/lightonie.png" >
 			</div>
 
-			<div id="menu-content" >
+			<div id="menu-content-btb" >
 
-				<a id="m_three_d"	class="list" href="#three_d">3D-Sites</a>
-				<a id="m_logos" 	class="list" href="#logos">Animated Logos</a>
-				<a id="m_source" 	class="list" href="https://github.com/lancelab/spaceen/">Source</a>
-				<a id="m_tester"	class="list" href="#tester">Browser Tester</a>
-				<a id="m_credits"	class="list" href="#credits">About</a>
+				<a id="m_three_d-btb"	class="list-btb" href="#three_d">3D-Sites</a>
+				<a id="m_logos-btb" 	class="list-btb" href="#logos">Animated Logos</a>
+				<a id="m_source-btb" 	class="list-btb" href="https://github.com/lancelab/spaceen/">Download. Source.</a>
+				<a id="m_tester-btb"	class="list-btb" href="#tester">Experiments</a>
+				<a id="m_credits-btb"	class="list-btb" href="#credits">About</a>
 
 			</div>
 
@@ -26,24 +26,23 @@
 
 
 
-		<div id="scrollee" >
+		<div id="scrollee-btb" >
 
-			<div id="d_three_d" class="section" >
+			<div id="d_three_d-btb" class="section-btb" >
 				<br>
-					<a id="three_d"> </a><h2>3D-Navigational Sites</h2>
+					<a id="three_d-btb"> </a><h2>3D-Navigational Sites</h2>
 
 				<ul>
 					<li><a href="../../nebulae-demo/site/?imagesToLoad.0=0">Parallax Design</a></li>
 					<li><a href="../../txt/whirlio-frames/">Frames</a></li>
 					<li><a href="../../clean/fading-tree/">Interactive Photography - extending photos to 3D</a></li>
-							<!-- li><a href="../../clean/mycity/">My City</a></li -->
 					<!-- li><a href="../../txt/whirlio-clouds/">Clouds</a></li -->
 					<li><a href="../../txt/gravity/">Gravity</a>
 						<br>
 						<br>
 					</li>
-					<li class="small-font">
-						<ul class="circle">
+					<li class="small-font-btb">
+						<ul class="circle-btb">
 							<li>T a r g e t e d  &nbsp;&nbsp;&nbsp;  F e a t u r e s<br><br></li>
 							<li>No need for WebGL, Direct X, OpenGL. Only mainstream canvas enabled browsers,</li>
 							<li>JavaScript-less fallback.</li>
@@ -68,7 +67,7 @@
 
 
 
-			<div id="d_logos" class="section" ><a id="logos"> </a><h2>Animated Logos</h2>
+			<div id="d_logos-btb" class="section-btb" ><a id="logos-btb"> </a><h2>Animated Logos</h2>
 
 				<ul>
 							<li><a href="../../logo/words/?noratio" title="Aspect ratio is not preserved">Words</a></li>
@@ -93,9 +92,6 @@
 							<li><a href="../../logo/words/?noratio&cflyer.fillFrom=200&cflyer.fillSprites=0&captured=-jerks">Shaking Words. Curves.</a></li>
 						</ul>
 					</li>
-					<li><a href="../../logo/animated-img/?noratio" title="Aspect ratio is not preserved">Animated image</a></li>
-					<li><a href="../../logo/animated-jpeg/?noratio" title="Aspect ratio is not preserved">Animated jpeg</a></li>
-					<li><a href="../../logo/animated-img-shanked/?noratio" title="Aspect ratio is not preserved">Animated image shanked</a></li>
 
 					<!--
 					<li>Aspect ratio is preserved</li>
@@ -111,10 +107,19 @@
 
 
 
-			<a id="tester"> </a>
-			<div id="d_tester"  class="section" >
-				<h2>Browser Tester</h2>
+			<a id="tester-btb"> </a>
+			<div id="d_tester-btb"  class="section-btb" >
+				<h2>Experiments</h2>
 				<ul>
+
+					<li><a href="../../gater/site">Gater</a></li>
+					<li><a href="../../anim-sun/site">Animated Sun</a></li>
+					<li><a href="../../logo/animated-img/?noratio" title="Aspect ratio is not preserved">Animated image</a></li>
+					<li><a href="../../logo/animated-jpeg/?noratio" title="Aspect ratio is not preserved">Animated jpeg</a></li>
+					<li><a href="../../logo/animated-img-shanked/?noratio" title="Aspect ratio is not preserved">Animated image shanked</a></li>
+
+					<li><a href="http://landkey.org/Sandbox/z/video-tag-tests/">Video tag polyfills and fallbacks</a>
+					<li><a href="../../clean/mycity/">The City</a></li>
 					<li><a href="../../tester/apple-canvas" title="Apple mobile. drawImage test.">Apple mobile. drawImage test.</a></li>
 				</ul>
 				<br><br>
@@ -123,9 +128,9 @@
 
 
 
-			<div id="d_credits"  class="section" >
+			<div id="d_credits-btb"  class="section-btb" >
 
-				<a id="credits" > </a>
+				<a id="credits-btb" > </a>
 
 				<h2>About</h2>
 

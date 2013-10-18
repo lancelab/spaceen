@@ -72,7 +72,7 @@
 			var delayStep			= conf.turnPonitPause / itemsMax;
 
 			//.	skips (re)generation if captured or forbidden
-			if(	( capturer.conf && !flyer.iteration ) || ( flyer.iteration && !conf.rerandom ) ) return;
+			if(	( graph.confRestoredFromCaptured && !flyer.iteration ) || ( flyer.iteration && !conf.rerandom ) ) return;
 
 			for( var ii = 0; ii < itemsMax; ii++ )
 			{

@@ -37,6 +37,7 @@
 //								C - saves config to disk
 //								D - saves detection to disk
 //								d - shows detection
+//								e - do extra work
 //							second-group:
 //								opacity aa
 //								color rrggbb
@@ -142,7 +143,7 @@
 			if( ww.length === 1 )	return true;
 			for( var ii = 1; ii < ww.length; ii++ )
 			{
-				ww[ ii ] = decodeURIComponent( ww[ ii ] );
+				ww[ ii ] = ww[ ii ] && decodeURIComponent( ww[ ii ] );
 			}
 
 			if( separator ) return ww;
@@ -154,9 +155,10 @@
 	//. Inits debug flag at object definition time.
 	var ww			= getQueryPar( 'deb', '-' );
 	debby.on		= !!ww;
-	debby.core		= ww && ww[1];
-	debby.style		= ww && ww[2];
-	debby.fontsize	= ww && ww[3];
+	debby.core		= ( ww && ww[1] ) || '';
+	debby.style		= ( ww && ww[2] ) || '';
+	debby.fontsize	= ( ww && ww[3] ) || '';
+	if( /e/.test( debby.core ) ) btb.debby.extra = true;
 	//. does backward compatibility
 	var debon		= debby.on;
 	//	\\//	Helper functions and variables   //////////////////

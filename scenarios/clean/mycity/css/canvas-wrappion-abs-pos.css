@@ -5,7 +5,7 @@
 
 
 	/* ************ canvas and content ************* */
-	#canvas
+	#canvas-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -13,7 +13,7 @@
 		top					: 0px;
 	}
 
-	#content
+	#content-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -29,7 +29,7 @@
 
 
 	/* ************ content links ************* */
-	#content a			
+	#content-btb a			
 	{	
 		color			: #AAAAAA;
 		font-weight		: normal;
@@ -38,17 +38,17 @@
 		font-size		: 12px;
 	}
 
-	#content a:visited
+	#content-btb a:visited
 	{	
 		color : #AAAAAA;
 	}
 
-	#content a:selected
+	#content-btb a:selected
 	{	
 		color : #444444;
 	}
 
-	#content a:hover		
+	#content-btb a:hover		
 	{ 
 		color : #222222;
 	}

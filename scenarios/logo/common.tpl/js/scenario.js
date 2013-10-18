@@ -5,23 +5,13 @@
 
 ( function () {
 
+		var btb			= window.btb$		= window.btb$			|| {};		
+		var	graph		= btb.graph			= btb.graph				|| {};
+		var	scenario	= graph.scenario	= graph.scenario		|| {};
 
-	var scenario;	// Plugin itself
-	var graph;
-
-
-	///	Attaches plugin
-	( function () {
-			var btb		= window.btb$		= window.btb$			|| {};		
-			graph		= btb.graph			= btb.graph				|| {};
-			scenario	= graph.scenario	= graph.scenario		|| {};
-	}) ();
-
-
-		scenario.run = function () {
-
+		scenario.run = function ()
+		{
 			graph.beforeit_init_afterit();
-
 		};
 
 

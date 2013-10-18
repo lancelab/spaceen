@@ -81,12 +81,11 @@
 
 
 	//.	(( It's more general. Put first. ))
-	if( $warnings_css )		echo "\t\t<link rel=\"stylesheet\"		href=\"" . $warnings_css	. "\">\n";
-	if( $scenarios_css )	echo "\t\t<link rel=\"stylesheet\"		href=\"" . $scenarios_css	. "\">\n";
-	if( $album_css )		echo "\t\t<link rel=\"stylesheet\"		href=\"" . $album_css		. "\">\n";
-	if( $player_css )		echo "\t\t<link rel=\"stylesheet\"		href=\"" . $player_css		. "\">\n";
-
-
+	if( !empty($warnings_css) )		echo "\t\t<link rel=\"stylesheet\"		href=\"" . $warnings_css	. "\">\n";
+	if( !empty($scenarios_css) )	echo "\t\t<link rel=\"stylesheet\"		href=\"" . $scenarios_css	. "\">\n";
+	if( !empty($album_css) )		echo "\t\t<link rel=\"stylesheet\"		href=\"" . $album_css		. "\">\n";
+	if( !empty($player_css) )		echo "\t\t<link rel=\"stylesheet\"		href=\"" . $player_css		. "\">\n";
+	if( !empty($media_css) )		echo "\t\t" . $media_css . "\n";
 
 
 	//	//\\	Gets core js-links	/////////////////
@@ -121,14 +120,15 @@
 		}
 	}
 
+	//:	gets js-files from subapp/js folder
 	$w_prefix		= "\t\t<script type=\"text/javascript\" src=\"js/";
 	$w_postfix		= "\"></script>\n";
 	$w_regex		= '/\.js$/';
 	$w_entry		= './js';
 	$gf->run( $w_entry,	$w_regex, $w_prefix, $w_postfix ); 
 
-	$ww						= 'js/scenario.js';
-	if( !file_exists( './' . $ww ) )
+	///	fishes out scenario.js
+	if( !file_exists( './js/scenario.js' ) )
 	{
 		$ww					= '../common.tpl/js/scenario.js';
 		if( !file_exists( $ww ) )
@@ -136,8 +136,9 @@
 			$ww				= '../../common.tpl/js/scenario.js';
 			if( !file_exists( $ww ) ) $ww = '';
 		}
+		if( $ww ) echo			"\t\t<script src=\"$ww\"></script>\n";
 	}
-	if( $ww ) echo			"\t\t<script src=\"$ww\"></script>\n";
+
 
 
 	///	Takes captured data

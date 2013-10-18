@@ -43,11 +43,11 @@
 
 		// //\\ CONTROL FRAGMENT ////////////////////////////////////////
 
-		var menu_jq					= $( '#menu' );
-		var scrollee_jq				= $( '#scrollee' );
-		var sections_jq				= $( '.section' );
-		var canvas_wrap_jq			= $( '#canvas_wrap' );
-		var canvasBgIm_jq			= $( '#canvasBgIm' );
+		var menu_jq					= $( '#menu-btb' );
+		var scrollee_jq				= $( '#scrollee-btb' );
+		var sections_jq				= $( '.section-btb' );
+		var canvas_wrap_jq			= $( '#canvas_wrap-btb' );
+		var canvasBgIm_jq			= $( '#canvasBgIm-btb' );
 
 		//menu_jq.css(				'visiblity', 'hidden' );
 		//scrollee_jq.css(			'visiblity', 'hidden' );
@@ -74,7 +74,7 @@
 
 		var wlen = menu_jq.length;
 		var menu_width				= wlen ? parseInt( menu_jq.css( 'width' ) ) : 0;
-		var menu_background_height	= wlen ? parseInt( $( '#menu-background' ).css( 'height' ) ) : 0;
+		var menu_background_height	= wlen ? parseInt( $( '#menu-background-btb' ).css( 'height' ) ) : 0;
 		scrollee_jq.css( 'margin-left', menu_width + 30 );
 
 
@@ -96,8 +96,8 @@
 
 		
 		//.	At least one must exist
-		var imageShaderPaddingTop		= parseInt( $( '.dynamic_image_placeholder' ).css( 'padding-top' ) );
-		var imageShaderPaddingBottom	= parseInt( $( '.dynamic_image_placeholder' ).css( 'padding-bottom' ) );
+		var imageShaderPaddingTop		= parseInt( $( '.dynamic_image_placeholder-btb' ).css( 'padding-top' ) );
+		var imageShaderPaddingBottom	= parseInt( $( '.dynamic_image_placeholder-btb' ).css( 'padding-bottom' ) );
 
 		var imageShaderHorPadding	= 0.05;		// * img.width
 		var landingSplashDuration	= conf.landingSplashDuration;
@@ -119,20 +119,19 @@
 		var images		= [];
 
 
-
-		$( 'div.section' ).each( function ( ix, section ) {
+		$( 'div.section-btb' ).each( function ( ix, section ) {
 
 			var name = section.id.substr(2);
 
-			var div_img_jq		= $( '#' + section.getAttribute( 'id' ) + ' .dynamic_image_placeholder' );
+			var div_img_jq		= $( '#' + section.getAttribute( 'id' ) + ' .dynamic_image_placeholder-btb' );
 			var img_jq			= null;
 			var imgShader_jq	= null;
 	
 
 			if( div_img_jq && div_img_jq[0] )
 			{
-				var img_jq			= $( 'img.dynamic_image_placeholder',  div_img_jq );
-				var imgShader_jq	= $( 'img.hider',  div_img_jq );
+				var img_jq			= $( 'img.dynamic_image_placeholder-btb',  div_img_jq );
+				var imgShader_jq	= $( 'img.hider-btb',  div_img_jq );
 				img_jq.css( 'visibility', 'hidden' );
 			}
 
@@ -160,7 +159,7 @@
 		var msections = [];
 		var msections_h = {};
 		/// .list is a class of items in menu-content
-		$( '.list' ).each( function ( ix, msection ) {
+		$( '.list-btb' ).each( function ( ix, msection ) {
 
 			var id				= msection.getAttribute( 'id' );
 			var name			= id.substr(2);
@@ -171,7 +170,6 @@
 				top			: msection_height * ix
 				//'color'	: '#1B1E27' 	
 			});
-
 			msections_h[ name ] = msections[ ix ] =
 			{
 				ix		: ix,
@@ -187,7 +185,6 @@
 
 
 		// //\\ digestPositions ////////////////////////////////////////////////
-
 
 		var repositionCanvasNavigation = function ()
 		{
@@ -222,8 +219,6 @@
 
 		var digestPositions = function ()
 		{
-
-
 			var wheight					= $(window).height();
 			var wwidth					= Math.floor( $(window).width() );
 
@@ -414,19 +409,19 @@
 					} // if( img_jq ...
 				}); // $.each( sections, function
 
-				$( '.list' ).removeClass( 'selected' );
+				$( '.list' ).removeClass( 'selected-btb' );
 				var ww = current_section.name;
 
 				if( menu_jq.length )
 				{
 					var current_msection = msections_h[ ww ];
-					current_msection.jq.addClass( 'selected' );
+					current_msection.jq.addClass( 'selected-btb' );
 
 					//	Sets background highlighter
 					var bg_img_top = current_msection.top - menu_background_light_y;
 
 
-					$( '#menu-background' ).css( 'top', bg_img_top );
+					$( '#menu-background-btb' ).css( 'top', bg_img_top );
 				}
 
 				established_section = current_section.ix;
@@ -503,9 +498,9 @@
 		{
 			fadePulseAtCulmPoint :	// TODM do this to enable /intro/landing scenario;
 			[ 
-				jQuery( '#scrollee' ),
-				jQuery( '#menu' ),
-				jQuery( '#img_menu_selector' )
+				jQuery( '#scrollee-btb' ),
+				jQuery( '#menu-btb' ),
+				jQuery( '#img_menu_selector-btb' )
 			]
 			// , onAtStartup : []
 		};

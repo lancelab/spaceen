@@ -420,16 +420,9 @@
 		//					skip_undefined	- omitting it allows copying "wall <- paper.undefined".
 		//					recdepth		- stops recursion at level > recdepth
 
-		//					do_wrap_function converts functions to string ( usually used for JSON transport )
-		//						example: { x : function() { F... }, y : function () { G... }, fun : data }
-		//							converts to
-		//						{ fun : [ { x : "function () ... ", y : "function () { G ...} ] }, data ] }
-		//						ambiguity fun : moo
-		//							is indicated by length === 2 of array next to fun :
-
 		//	Results in:		changed wall properties.
 		//	Returns:		combined clone of paper to wall.
-		var paste_non_arrays = btb.paste_non_arrays = function ( wall, paper, level, skip_undefined, refdepth, recdepth, do_wrap_function )
+		var paste_non_arrays = btb.paste_non_arrays = function ( wall, paper, level, skip_undefined, refdepth, recdepth )
 		{
 
 			level = level || 0;
@@ -466,7 +459,7 @@
 			if( typeof wall !== 'object' || wall === null )
 			{
 				// if( deb ) deb( 'Wall is a plain value. Making it an empty object' );
-				wall={};				
+				wall = {};
 			}
 
 			var arr_detector = !!paper.length || paper.length === 0;
@@ -475,7 +468,7 @@
 				// if( deb ) deb( ' Paper is an array and wall not. Generating array. Breaking paste feature.' );
 				var wall_preserved = wall;
 				wall = [];
-				paste_non_arrays( wall, wall_preserved, level+1, skip_undefined, refdepth  );
+				paste_non_arrays( wall, wall_preserved, level, skip_undefined, refdepth, null );
 			}
 
 			// if( deb ) deb( ' Now both wall and paper are objects of the same type. Pasting their properties.' );
@@ -486,33 +479,14 @@
 				{
 					if( p !== 'length' )
 					{
-
 						var paperP = paper[ p ];
-						if( do_wrap_function && typeof paperP === 'function' )
-						{
-							wall.fun			= wall.fun || [];
-							wall.fun[0]			= wall.fun[0] || {};
-							wall.fun[ 0 ][ p ]	= paperP.toString();
-					
-						}else{
-
-							var theValue = paste_non_arrays( wall[ p ], paper[ p ], level+1, skip_undefined, refdepth );
+							var theValue = paste_non_arrays( wall[ p ], paper[ p ], level+1, skip_undefined, refdepth, recdepth );
 
 							if( ! ( ( arr_detector || skip_undefined ) && typeof theValue === 'undefined' )  )
 							{
 								// if( deb ) deb( 'Assigning wall[' + p + '] = "' + theValue +'".' );
-								if( do_wrap_function && p === 'fun' )
-								{
-									wall.fun		= wall.fun || [];
-									wall.fun[0]		= wall.fun[0] || {};
-									wall.fun[1]		= theValue;
-								}else{
-									wall[ p ]		= theValue;
-								}
+								wall[ p ]		= theValue;
 							}
-						}
-
-
 					}else{
 						throw "Reserved word \"length\" used as a property"; //TODO
 					}
@@ -521,12 +495,6 @@
 			return wall;
 		};// ...paste_non_arrays=function...
 		
-
-
-
-
-
-
 
 
 

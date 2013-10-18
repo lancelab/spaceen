@@ -58,7 +58,7 @@
 
 	/* ****************** canvas wrappion *********************** */
 
-	#canvas_wrap
+	#canvas_wrap-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -71,14 +71,14 @@
 	}	
 
 
-	#canvas
+	#canvas-btb
 	{
 		width				: 100%;
 		height				: 100%;
 		z-index				: 1; 
 	}
 
-	#content
+	#content-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -127,26 +127,26 @@
 
 	/* //\\ Deviations for warnings. TODM-copy-pasted. */
 
-	#loading_wrapper
+	#loading_wrapper-btb
 	{
 		position	: absolute;
 	}
 
-	#canvas_warning
+	#canvas_warning-btb
 	{
 		position	: absolute;
 		text-align	: left;
 		color		: #AAAAAA;
 	}
 
-	#java-script-disabled
+	#java-script-disabled-btb
 	{
 		top			: 10px;
 		text-align	: left;
 		color		: #AAAAAA;
 	}
 
-	#js-disabled-subdiv
+	#js-disabled-subdiv-btb
 	{
 		left		: 2%;
 	}

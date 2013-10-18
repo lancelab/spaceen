@@ -23,7 +23,7 @@
 	usprite.init = function ()
 	{
 		// e3DSprite.clipify();
-		var content = document.getElementById( 'content' );
+		var content = document.getElementById( 'content-btb' );
 		if( content ) content.style.display = 'block';
 	};
 

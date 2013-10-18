@@ -7,6 +7,7 @@
 		var debSavedTODO	= false;	// do remove after development
 
 		var	btb				= window.btb$			= window.btb$			|| {};		
+		var debby			= btb.debby				= btb.debby				|| {};
 		var	graph			= btb.graph				= btb.graph				|| {};
 		var	flyer			= graph.flyer			= graph.flyer			|| {};
 		var dsprite			= graph.dsprite			= graph.dsprite			|| {};
@@ -27,7 +28,7 @@
 
 		virt.drawArea		= virt.drawArea || {};
 
-		var PI2				= 2 * 3.1415;
+		var PI2				= 2 * 3.1415926;
 
 		var itemsMax;
 		var sprites;
@@ -229,17 +230,14 @@
 	//***************************************************************
 	flyer.move_sprites = function ( effTicks, time )
 	{
+
 		var turnEnterPassed	= mstones.turnEnterPassed;
 		var inPausePhase	= mstones.inPausePhase;
-
 		var ctx				= virt.ctx;
-
-		var effPhase		= effTicks / conf.ticksPeriod;
-
+		var effPhase		= conf.ticksPeriod ? effTicks / conf.ticksPeriod : 0;
 		var signedTicks		= effTicks;
 		var complemTicks	= effTicks;
 		var absTicks		= effTicks;
-
 
 
 		///	Change happens this way:
@@ -411,8 +409,8 @@
 		}
 
 		///	Generates delays. ( Vibration formerly. )
-		uniform_delay				= uniform_delay || ( flyerConf.uniform_delay && inPausePhase > -1 );
-		// var departureStep		= conf.turnPonitPause / sprites.length;
+		uniform_delay			= uniform_delay || ( flyerConf.uniform_delay && inPausePhase > -1 );
+		// var departureStep	= conf.turnPonitPause / sprites.length;
 		var inPausePhaseEff		= conf.turnPonitPause * ( uniform_delay ? ( inPausePhase > -1 ? inPausePhase : 1 ) : 0  );
 		//var wTurnTime			= conf.turnTicksPoint / conf.ticksPerMsec;
 
@@ -500,7 +498,15 @@
 							}
 							var iterationVolume	= gridVolume - cellOffset;
 
-							var unlimitedCell	= Math.floor( gridVolume * mstones.ticks / conf.ticksPeriod );
+							var effectiveTicks	= mstones.ticks;
+							var wSwing			= conf.swingTicks * 2;
+							if( wSwing )
+							{
+								var ww			= effectiveTicks % wSwing;
+								var effectiveTicks	= Math.min( ww, wSwing - ww );
+							}
+
+							var unlimitedCell	= Math.floor( gridVolume * effectiveTicks / conf.ticksPeriod );
 							if( unlimitedCell >= iterationVolume - 1 ) firstClipCycleDone_TODP = true;
 							effGridCell			= cellOffset + unlimitedCell % iterationVolume;
 
@@ -527,12 +533,12 @@
 									var wwDiv = document.getElementById( 'detectAnomaly_console_div_btb' );
 									if( wwDiv )
 									{
-										if( conf.debugmode )
+										if( debby.extra )
 										{
 											var ww =	"\n" +
 												'Anomaly debug: ' +
 												"\n" +
-												' gridRow=' + gridRow + ' gridCol=' + gridRow + ' offsetX = ' + offsetX + ' offsetY=' + offsetY + 
+												' gridRow=' + gridRow + ' gridCol=' + gridCol + ' offsetX = ' + offsetX + ' offsetY=' + offsetY + 
 												' widthX=' + widthX +
 												' target_width = ' + target_width + ' target_height=' + target_height + "\n" +
 												' master_screen_scale=' + master_screen_scale + ' final_width=' + final_width;
@@ -553,6 +559,11 @@
 							draw2D.drawRotatedClip( img, offsetX, offsetY, widthX, widthY, spr.ff, spriteCenterX, spriteCenterY, target_width, target_height, ctx );
 							ctx.globalAlpha = 1;
 
+							//. solved:	conf.scaffold on the screen; TODM why this fails if called at the end of sub?
+							// if( conf.scaffold ) graph.putText( ctx, screen_center_xx, screen_center_yy, master_screen_scale, conf.vwidth, conf.scaffold );
+
+
+						///	not frame-scenario
 						}else{
 
 
@@ -578,6 +589,7 @@
 						}
 						
 
+					/// not 2DImages
 					}else{
 
 
@@ -608,10 +620,12 @@
 
 		} //if( !( conf.picClearAtEnd &&
 
-		graph.drawScaledStubsToMaster ( inPausePhase, master_screen_scale, turnEnterPassed, absTicks );
+
 
 		//.	Puts garbage on the screen
 		if( conf.scaffold ) graph.putText( ctx, screen_center_xx, screen_center_yy, master_screen_scale, conf.vwidth, conf.scaffold );
+
+		graph.drawScaledStubsToMaster ( inPausePhase, master_screen_scale, turnEnterPassed, absTicks );
 
 		// if( dontDrawAfterPeriod && effTicks >= conf.ticksPeriod ) stoppedAfterPeriodDrawing = true;
 		if( dontDrawAfterPeriod && mstones.iterationExitEntered ) stoppedAfterPeriodDrawing = true;
@@ -649,11 +663,9 @@
 	///	Enables non-displayed bgImage
 	var enableBgAfterFirstRun = function ()
 	{
-		if( graph.dom.canvasBgIm_jq )
+		if( graph.domjq.canvasBgIm )
 		{
-			graph.dom.canvasBgIm_jq.css( 'display', 'block' );
-			// c ccc( 'canvasBgIm display at first functional-sprite  ' + graph.dom.canvasBgIm_jq.css( 'display' ) );
-			// c ccc( 'ownPhase= ' + ownPhase );
+			graph.domjq.canvasBgIm.css( 'display', 'block' );
 			mstones.firstTimeRan = true;
 		}
 	}

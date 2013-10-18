@@ -1,0 +1,38 @@
+
+
+		//	//\\ Example of how to setup image-load and declipifying
+		/*
+		if( btb.canvasEnabled )
+		{
+				///	Sets basic_images_to_load scenario of loading and declipping if btb.conf requires.
+				if( conf.basic_images_to_load )
+				{
+					//	//\\	Notifiers
+					confImgToLoad ... conf.basic_images_to_load.singleLoaded = function( ix, sprite )
+					{
+						ifdeb( 'image ' + ix + ' loaded; sprite.name = ' + sprite.name );
+					};
+
+					confImgToLoad ... conf.basic_images_to_load.allLoaded = function( lman )
+					{
+						firePostAnimation();
+						ifdeb( 'all basic images digested' );
+					};
+					//	\\//	Notifiers
+
+					//.	Begins loading
+					load_images.load( conf.basic_images_to_load );
+				}
+
+
+				///	Sets content-images_to_load scenario of loading and declipping if btb.conf requires.
+				if( conf.images_to_load )
+				{
+					load_images.load( conf.images_to_load );
+				}
+		}	// else{ //	if( btb.canvasEnabled ) TODM here to add PostLoad animation for non-canvas-clipped images.
+		*/
+		//	\\// Example of how to setup image-load and declipifying
+
+
+

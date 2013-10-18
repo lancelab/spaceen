@@ -34,7 +34,7 @@
 				}
 				if( move )
 				{
-					var padder_jq	= $( '#padder' );
+					var padder_jq	= $( '#padder-btb' );
 					var newOffset	= padder_jq.scrollTop() + move;
 					padder_jq.scrollTop( newOffset  );
 					padderOffset	= newOffset;
@@ -44,7 +44,7 @@
 
 
 			/// Handles verticalScrolls
-			var padder_jq			= $( '#padder' );
+			var padder_jq			= $( '#padder-btb' );
 			var padderOffset		= padder_jq.scrollTop();
 			var digestPadderScroll	= function ()
 			{

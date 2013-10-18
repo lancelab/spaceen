@@ -1,7 +1,17 @@
-//	//\\//	Diary. Optional file.
+//	//\\//	Diary.
+
+		0.0.86			October 17, 2013. To make app more plug-in-able, -btb suffix is added to css and markup.
+						Experimental version: some subapps are not refactored.
+						Checkout 0.0.82 as more stable from GitHub.com.
+
+		0.0.85			October 9, 2013. Core refactoring began.
+						graph.conf is simplified;
 
 
-
+		0.0.84			October 7, 2013.
+						JFON is done. Not tested enough yet.
+						capturer.js partially works.
+						animated-sun done;
 
 		0.0.82			Sep. 8 - 19. Deployer refactored;
 						.gitignore changed to "white list" from "black list";

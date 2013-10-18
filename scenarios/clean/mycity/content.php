@@ -1,6 +1,6 @@
 <?php ?>
 			<!-- Master content -->
-			<div id="content">
+			<div id="content-btb">
 				<div id="right-content-btb">
 					<a href="../../../LICENSE">(c) 2013 KVK</a>
 				</div>

@@ -58,7 +58,7 @@
 
 	/* ****************** canvas wrappion *********************** */
 
-	#canvas_wrap
+	#canvas_wrap-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -70,7 +70,7 @@
 	}	
 
 
-	#canvas
+	#canvas-btb
 	{
 		position			: relative;
 		width				: 320px;
@@ -80,7 +80,7 @@
 		z-index				: 1; 
 	}
 
-	#content
+	#content-btb
 	{
 		position			: absolute;
 		width				: 100%;
@@ -92,7 +92,7 @@
 		z-index				: 2;
 	}
 
-	.copyright
+	.copyright-btb
 	{
 		/*	not good: becomes block which possibly adds line above and below it and misaligns with other <a ...*/
 		float				: right;
@@ -114,26 +114,26 @@
 
 	/* //\\ Deviations for warnings. TODM-copy-pasted. */
 
-	#loading_wrapper
+	#loading_wrapper-btb
 	{
 		position	: absolute;
 	}
 
-	#canvas_warning
+	#canvas_warning-btb
 	{
 		position	: absolute;
 		text-align	: left;
 		color		: #AAAAAA;
 	}
 
-	#java-script-disabled
+	#java-script-disabled-btb
 	{
 		top			: 10px;
 		text-align	: left;
 		color		: #AAAAAA;
 	}
 
-	#js-disabled-subdiv
+	#js-disabled-subdiv-btb
 	{
 		left		: 2%;
 	}

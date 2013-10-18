@@ -4,20 +4,20 @@
 	<img id="logo-btb" src="../../../../img/nebulae/cube-logo.png">
 
 
-	<div id="scrollee">
+	<div id="scrollee-btb">
 
-		<div id="padder">
+		<div id="padder-btb">
 
-			<a id="introduction"> </a>
+			<a id="introduction-btb"> </a>
 
-			<div id="carousel-1" class="section" >
+			<div id="carousel-1-btb" class="section-btb" >
 
 				<h1>Parallax Journey</h1>
 
 
 				<br>
 
-				Parallax is a pacing objects in a plane and displaying the plane with <a href="../../../doc/sketch0_0.gif">scale inverse proportional to plane's distance from observer</a>.
+				Parallax is a pacing objects in a plane and displaying the plane with <a href="../../../doc/sketch0_0.gif">scale ~ 1 / D, where D is plane's distance to observer</a>.
 				When few planes are moved, this creates an impression of a live scene.
 				<br>
 				<br>
@@ -44,11 +44,10 @@
 				<br>
 				<br>
 
-				<h3>Plane rotations around vertical axis</h3>
+				<h3>Plane own rotation</h3>
 
-				There are more complex motions, which require more complex plane transformations than simple rescaling.
-				For example, if the scene is a cube and planes belong facets of the cube, and cube rotates over vertical axis, then
-				different parts of side facets may have different distance to observer.<br><br>
+				For example, if cube rotates around vertical axis, then different parts of side
+				facets may have different distance to observer.<br><br>
 
 				<a href="./?conf3D.bgScenario.mode=cube&imagesToLoad.1=0&conf3D.boxWrap.doPrism=0&conf3D.originY=500&conf3D.originYMax=11200&conf3D.scale=700">A2.Experimental. Cube. Wallpaper. Slow FF performance on Ubuntu laptop. Should say good-bye to this variant.</a><br><br>
 				<a href="./?conf3D.bgScenario.mode=cube&imagesToLoad.1=0&conf3D.boxWrap.doPrism=1&conf3D.originY=500&conf3D.originYMax=11200&conf3D.scale=700">A. Prism. Wallpaper.</a><br>
@@ -58,10 +57,10 @@
 			</div><!-- carousel-1 -->
 
 			
-			<a id="credits"> </a>
-			<div id="carousel-2"  class="section" >
+			<a id="credits-btb"> </a>
+			<div id="carousel-2-btb"  class="section-btb" >
 
-				<a id="credits" > </a>
+				<a id="credits-btb" > </a>
 				<h2><a href="http://landkey.org/Sandbox/z/graph-spin/">Demos</a></h2>
 				Image resources credit: NASA, ESA, and the Hubble Heritage Team (STScI/AURA)-ESA/Hubble Collaboration
 				<a href="http://hubblesite.org/newscenter/archive/releases/2006/55/image/a/">hs-2006-55-a-full_jpg.jpg</a>,
